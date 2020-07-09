@@ -1,0 +1,20 @@
+.entry-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+label {
+  flex-basis: 100%;
+}
+
+.entry-form__date,
+.entry-form__concepts,
+.entry-form__mood,
+.entry-form__entry {
+  flex: 0 0 30%;
+}

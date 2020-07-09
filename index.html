@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles/main.css">
+  <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
+  <title>Jacob's Daily Journal</title>
+</head>
+<body>
+  <!-- Page Header -->
+  <header class="header">
+    <img class="header__logo" src="./assets/logo.png" alt="Jacob's Daily Journal Logo">
+    <h1 class="header__text">Jacob's Daily Journal</h1>
+  </header>
+
+  <!-- Journal Entry Form -->
+  <section class="entry-form">
+    <h2 class="entry-form__header">What Did You Do Today?</h2>
+    <form class="entry-form__form">
+      <fieldset class="form-group">
+        <label for="date" class="entry-form__date-label">Date</label>
+        <input type="date" class="entry-form__date" id="date" name="date">
+      </fieldset>
+      <fieldset class="form-group">
+        <label for="concepts" class="entry-form__concepts-label">Concepts</label>
+        <input type="text" class="entry-form__concepts" id="concepts" name="concepts">
+      </fieldset>
+      <fieldset class="form-group">
+        <label for="mood" class="entry-form__mood-label">Mood</label>
+        <input type="range" class="entry-form__mood" id="mood" name="mood">
+      </fieldset>
+      <fieldset class="form-group">
+        <label for="entry" class="entry-form__entry-label">Journal Entry:</label>
+        <textarea class="entry-form__entry" name="entry" id="entry" cols="30" rows="10"></textarea>
+      </fieldset>
+      <input type="submit" class="entry-form__submit" value="Record Journal Entry">
+    </form>
+  </section>
+
+  <!-- Entries List -->
+  <section class="entries">
+    <!-- Refer to wireframe... Will probably be dynamically populated with JavaScript?  -->
+    <h2 class="entries__header">My Journal</h2>
+  </section>
+
+  <nav class="entries-nav">
+    <!-- Refer to wireframe... Will probably be dynamicaly populated with JavaScript? -->
+    <h2 class="entries-nav__header">Past Entries</h2>
+  </nav>
+</body>
+</html>
