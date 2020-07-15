@@ -1,0 +1,1 @@
+export default html => html.toString().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
