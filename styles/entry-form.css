@@ -3,7 +3,6 @@
   flex-direction: column;
   padding: 3rem;
   background: #457b9d;
-  border-bottom: 2px solid var(--red-color);
 }
 
 .form-group {

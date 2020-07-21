@@ -1,4 +1,39 @@
 .entries {
   background: var(--dark-blue);
   color: #eee;
+  padding: 3rem;
+}
+
+.entries__header {
+  text-align: center;
+}
+
+.journal-entry {
+  background-color: var(--light-color);
+  color: #000;
+  margin: 2rem;
+  border-radius: 5px;
+  padding: 2rem;
+}
+
+.journal-entry__date {
+  width: 100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.journal-entry__concept-mood-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.journal-entry__concept,
+.journal-entry__mood {
+  flex-basis: 50%;
+  text-align: center;
+}
+
+.journal-entry__entry {
+  margin: 1rem;
+  margin-bottom: 0;
 }
