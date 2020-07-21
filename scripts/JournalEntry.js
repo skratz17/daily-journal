@@ -1,10 +1,10 @@
 import escape from './escapeHTML.js';
+import { getMoodEmoji } from './moodEmojis.js';
 
 export const JournalEntry = journalEntry => {
   const { id, date, concept, entry, mood } = journalEntry;
 
-  const moodEmojis = ['👿', '🤬', '😡', '😭', '😕', '🙃', '🙂', '😀', '😁', '🤠'];
-  const moodEmoji = moodEmojis[mood - 1];
+  const moodEmoji = getMoodEmoji(mood);
 
   return `
     <article id="entry--${escape(id)}" class="journal-entry">

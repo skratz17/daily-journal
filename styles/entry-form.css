@@ -53,3 +53,8 @@
   margin-left: auto;
   margin-top: 1rem;
 }
+
+.entry-form__mood-emoji {
+  margin-left: auto;
+  transform: scale(4);
+}
