@@ -1,15 +1,30 @@
 .entry-form {
   display: flex;
   flex-direction: column;
+  padding: 1rem;
+  background: #457b9d;
+  border-bottom: 2px solid var(--red-color);
 }
 
 .form-group {
   display: flex;
   flex-wrap: wrap;
+  border: none;
 }
 
 label {
   flex-basis: 100%;
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.entry-form__header {
+  text-align: center;
+  color: #eee;
+}
+
+.entry-form__label {
+  color: #eee;
 }
 
 .entry-form__date,
@@ -17,4 +32,5 @@ label {
 .entry-form__mood,
 .entry-form__entry {
   flex: 0 0 30%;
+  background: var(--light-color);
 }

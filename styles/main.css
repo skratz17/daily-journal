@@ -1,2 +1,24 @@
+@import 'config.css';
 @import 'header.css';
 @import 'entry-form.css';
+@import 'entries.css';
+@import 'entries-nav.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--light-color);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+.col--left {
+  border-right: 2px solid var(--red-color);
+}

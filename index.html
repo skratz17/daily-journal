@@ -14,40 +14,46 @@
     <h1 class="header__text">Jacob's Daily Journal</h1>
   </header>
 
-  <!-- Journal Entry Form -->
-  <section class="entry-form">
-    <h2 class="entry-form__header">What Did You Do Today?</h2>
-    <form class="entry-form__form">
-      <fieldset class="form-group">
-        <label for="date" class="entry-form__date-label">Date</label>
-        <input type="date" class="entry-form__date" id="date" name="date">
-      </fieldset>
-      <fieldset class="form-group">
-        <label for="concepts" class="entry-form__concepts-label">Concepts</label>
-        <input type="text" class="entry-form__concepts" id="concepts" name="concepts">
-      </fieldset>
-      <fieldset class="form-group">
-        <label for="mood" class="entry-form__mood-label">Mood</label>
-        <input type="range" class="entry-form__mood" id="mood" name="mood">
-      </fieldset>
-      <fieldset class="form-group">
-        <label for="entry" class="entry-form__entry-label">Journal Entry:</label>
-        <textarea class="entry-form__entry" name="entry" id="entry" cols="30" rows="10"></textarea>
-      </fieldset>
-      <input type="submit" class="entry-form__submit" value="Record Journal Entry">
-    </form>
-  </section>
+  <main class="container">
+    <div class="col--left">
+      <!-- Journal Entry Form -->
+      <section class="entry-form">
+        <h2 class="entry-form__header">What Did You Do Today?</h2>
+        <form class="entry-form__form">
+          <fieldset class="form-group">
+            <label for="date" class="entry-form__label entry-form__date-label">Date</label>
+            <input type="date" class="entry-form__date" id="date" name="date">
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="concepts" class="entry-form__label entry-form__concepts-label">Concepts</label>
+            <input type="text" class="entry-form__concepts" id="concepts" name="concepts">
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="mood" class="entry-form__label entry-form__mood-label">Mood</label>
+            <input type="range" class="entry-form__mood" id="mood" name="mood" min="0" max="10" step="1">
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="entry" class="entry-form__label entry-form__entry-label">Journal Entry</label>
+            <textarea class="entry-form__entry" name="entry" id="entry" cols="30" rows="10"></textarea>
+          </fieldset>
+          <input type="submit" class="entry-form__submit" value="Record Journal Entry">
+        </form>
+      </section>
 
-  <!-- Entries List -->
-  <section class="entries">
-    <!-- Refer to wireframe... Will probably be dynamically populated with JavaScript?  -->
-    <h2 class="entries__header">My Journal</h2>
-  </section>
+      <!-- Entries List -->
+      <section class="entries">
+        <!-- Refer to wireframe... Will probably be dynamically populated with JavaScript?  -->
+        <h2 class="entries__header">My Journal</h2>
+      </section>
+    </div>
 
-  <nav class="entries-nav">
-    <!-- Refer to wireframe... Will probably be dynamicaly populated with JavaScript? -->
-    <h2 class="entries-nav__header">Past Entries</h2>
-  </nav>
+    <div class="col--right">
+      <nav class="entries-nav">
+        <!-- Refer to wireframe... Will probably be dynamicaly populated with JavaScript? -->
+        <h2 class="entries-nav__header">Past Entries</h2>
+      </nav>
+    </div>
+  </main>
 
   <script type="module" src="./scripts/main.js"></script>
 </body>
