@@ -8,5 +8,8 @@ export const JournalEntryList = () => {
 
   const entriesHTML = entries.map(JournalEntry).join('\n');
 
-  domNode.innerHTML += entriesHTML;
+  domNode.innerHTML = `
+    <h2 class="entries__header">My Journal</h2>
+    ${entriesHTML}
+  `;
 };
