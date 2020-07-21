@@ -1,9 +1,10 @@
-@import 'config.css';
-@import 'utilities.css';
-@import 'header.css';
-@import 'entry-form.css';
-@import 'entries.css';
-@import 'entries-nav.css';
+@import './config.css';
+@import './utilities.css';
+
+@import './components/header.css';
+@import './components/entry-form.css';
+@import './components/entries.css';
+@import './components/entries-nav.css';
 
 * {
   margin: 0;

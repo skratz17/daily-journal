@@ -1,4 +1,4 @@
-import { getMoodEmoji } from './moodEmojis.js';
+import { getMoodEmoji } from '../utilities/moodEmojis.js';
 
 document.addEventListener('change', event => {
   if(event.target.className === 'entry-form__mood') {

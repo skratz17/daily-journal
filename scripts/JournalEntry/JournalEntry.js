@@ -1,5 +1,5 @@
-import escape from './escapeHTML.js';
-import { getMoodEmoji } from './moodEmojis.js';
+import escape from '../utilities/escapeHTML.js';
+import { getMoodEmoji } from '../utilities/moodEmojis.js';
 
 export const JournalEntry = journalEntry => {
   const { id, date, concept, entry, mood } = journalEntry;
