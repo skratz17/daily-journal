@@ -1,0 +1,9 @@
+.entries-nav {
+  background: var(--light-blue);
+  height: 100%;
+  padding: 2rem;
+}
+
+.entries-nav__header {
+  text-align: center;
+}
