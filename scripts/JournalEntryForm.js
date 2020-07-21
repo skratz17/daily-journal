@@ -1,3 +1,14 @@
+import { getMoodEmoji } from './moodEmojis.js';
+
+document.addEventListener('change', event => {
+  if(event.target.className === 'entry-form__mood') {
+    const moodEmoji = getMoodEmoji(event.target.value);
+    document
+      .querySelector('.entry-form__mood-emoji')
+      .innerHTML = moodEmoji;
+  }
+});
+
 export const JournalEntryForm = () => {
   const domNode = document.querySelector('.entry-form');
 
@@ -15,7 +26,8 @@ export const JournalEntryForm = () => {
         </fieldset>
         <fieldset class="form-group">
           <label for="mood" class="entry-form__label entry-form__mood-label">Mood</label>
-          <input type="range" class="entry-form__mood" id="mood" name="mood" min="0" max="10" step="1">
+          <input type="range" class="entry-form__mood" id="mood" name="mood" value="5" min="0" max="9" step="1">
+          <p class="entry-form__mood-emoji">${getMoodEmoji(5)}</p>
         </fieldset>
       </div>
       <fieldset class="form-group">
