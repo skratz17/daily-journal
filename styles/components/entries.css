@@ -37,3 +37,19 @@
   margin: 1rem;
   margin-bottom: 0;
 }
+
+@media(max-width: 500px) {
+  .entries {
+    padding: 1rem;
+  }
+
+  .journal-entry__date,
+  .journal-entry__concept,
+  .journal-entry__mood {
+    margin: 0.5rem auto;
+  }
+
+  .journal-entry__concept-mood-wrapper {
+    flex-direction: column;
+  }
+}

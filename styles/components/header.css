@@ -18,3 +18,9 @@
   font-size: 3rem;
   text-align: center;
 }
+
+@media(max-width: 500px) {
+  .header__logo {
+    max-width: 5rem;
+  }
+}

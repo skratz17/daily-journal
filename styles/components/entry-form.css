@@ -58,3 +58,17 @@
   margin-left: auto;
   transform: scale(4);
 }
+
+@media(max-width: 500px) {
+  .entry-form__label {
+    margin-top: 1rem;
+  }
+
+  .entry-form__date {
+    flex-basis: 50%;
+  }
+
+  .entry-form__concepts-and-mood-wrapper {
+    flex-direction: column;
+  }
+}
