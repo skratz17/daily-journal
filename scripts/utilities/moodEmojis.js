@@ -14,3 +14,4 @@ export const getMoodEmoji = value => {
 
 export const getDefaultMoodEmoji = () => moodEmojis[DEFAULT_MOOD_VALUE];
 export const getDefaultMoodValue = () => DEFAULT_MOOD_VALUE;
+export const getEmojisCount = () => moodEmojis.length;
