@@ -10,6 +10,8 @@ document.addEventListener('input', event => {
 });
 
 export const JournalEntryForm = () => {
+  const todayDateString = getTodayDateString();
+
   const domNode = document.querySelector('.entry-form');
 
   domNode.innerHTML = `
@@ -17,7 +19,7 @@ export const JournalEntryForm = () => {
     <form class="entry-form__form">
       <fieldset class="form-group">
         <label for="date" class="entry-form__label entry-form__date-label">Date</label>
-        <input type="date" class="entry-form__date" id="date" name="date">
+        <input type="date" class="entry-form__date" id="date" name="date" value=${todayDateString}>
       </fieldset>
       <div class="entry-form__concepts-and-mood-wrapper">
         <fieldset class="form-group">
@@ -38,3 +40,11 @@ export const JournalEntryForm = () => {
     </form>
   `;
 };
+
+/**
+ * Get the current date string in the format YYYY-MM-DD
+ */
+const getTodayDateString = () => {
+  const now = new Date(Date.now());
+  return `${now.getFullYear()}-${('0' + (now.getMonth() + 1)).slice(-2)}-${('0' + now.getDate()).slice(-2)}`;
+}
