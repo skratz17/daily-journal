@@ -36,3 +36,10 @@ export const useJournalEntries = () => {
   );
   return JSON.parse(JSON.stringify(sortedByDate));
 };
+
+export const useJournalEntriesReverseChronological = () => {
+  const sortedReverseChronological = journal.sort(
+    (currentEntry, nextEntry) => Date.parse(nextEntry.date) - Date.parse(currentEntry.date)
+  );
+  return JSON.parse(JSON.stringify(sortedReverseChronological));
+};

@@ -1,10 +1,10 @@
-import { useJournalEntries } from '../JournalEntry/JournalDataProvider.js';
+import { useJournalEntriesReverseChronological } from '../JournalEntry/JournalDataProvider.js';
 import { JournalEntryNavLink } from './JournalEntryNavLink.js';
 
 export const JournalEntryNav = () => {
   const domNode = document.querySelector('.entries-nav');
 
-  const entries = useJournalEntries();
+  const entries = useJournalEntriesReverseChronological();
 
   const navLinksHTML = entries.map(JournalEntryNavLink).join('\n');
 
