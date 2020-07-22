@@ -1,9 +1,25 @@
 .entries-nav {
   background: var(--light-blue);
   height: 100%;
-  padding: 2rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .entries-nav__header {
   text-align: center;
+}
+
+.entries-nav__link {
+  font-size: 1.25rem;
+  margin: 0.5rem 0;
+  color: var(--dark-blue);
+  background-color: var(--light-color);
+  text-decoration: none;
+  transition: all 0.15s;
+}
+
+.entries-nav__link:hover {
+  background-color: #ddd;
 }
