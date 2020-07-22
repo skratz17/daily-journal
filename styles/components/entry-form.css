@@ -14,6 +14,7 @@
 
 .entry-form__concepts-and-mood-wrapper {
   display: flex;
+  align-items: center;
 }
 
 .entry-form__label {
@@ -55,7 +56,7 @@
 
 .entry-form__mood-emoji {
   margin-left: auto;
-  font-size: 4rem;
+  font-size: 5rem;
 }
 
 @media(max-width: 500px) {
