@@ -1,0 +1,15 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--light-color);
+  padding: 0.75rem 3rem;
+}
+
+.footer::before {
+  content: '';
+}
+
+.footer__img {
+  width: 50px;
+}
