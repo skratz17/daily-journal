@@ -10,8 +10,6 @@ document.addEventListener('input', event => {
 });
 
 export const JournalEntryForm = () => {
-  const todayDateString = getTodayDateString();
-
   const domNode = document.querySelector('.entry-form');
 
   domNode.innerHTML = `
@@ -19,7 +17,7 @@ export const JournalEntryForm = () => {
     <form class="entry-form__form">
       <fieldset class="form-group">
         <label for="date" class="entry-form__label entry-form__date-label">Date</label>
-        <input type="date" class="entry-form__date" id="date" name="date" value=${todayDateString}>
+        <input type="date" class="entry-form__date" id="date" name="date" value=${getTodayDateString()}>
       </fieldset>
       <div class="entry-form__concepts-and-mood-wrapper">
         <fieldset class="form-group">
@@ -46,5 +44,14 @@ export const JournalEntryForm = () => {
  */
 const getTodayDateString = () => {
   const now = new Date(Date.now());
-  return `${now.getFullYear()}-${('0' + (now.getMonth() + 1)).slice(-2)}-${('0' + now.getDate()).slice(-2)}`;
+  return now.getFullYear() +
+    '-' + padWithLeadingZeroesToTwoDigits(now.getMonth() + 1) +
+    '-' + padWithLeadingZeroesToTwoDigits(now.getDate());
 }
+
+/**
+ * Given a string value, pad it with leading zeroes until it is two digits in length
+ * E.g.: 6 => 06, 12 => 12
+ * @param {String} value 
+ */
+const padWithLeadingZeroesToTwoDigits = value => ('0' + value).slice(-2);
