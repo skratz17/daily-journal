@@ -17,7 +17,7 @@ export const JournalEntryForm = () => {
     <form class="entry-form__form">
       <fieldset class="form-group">
         <label for="date" class="entry-form__label entry-form__date-label">Date</label>
-        <input type="date" class="entry-form__date" id="date" name="date" value=${getTodayDateString()}>
+        <input type="date" class="entry-form__date" id="date" name="date">
       </fieldset>
       <div class="entry-form__concepts-and-mood-wrapper">
         <fieldset class="form-group">
@@ -26,7 +26,7 @@ export const JournalEntryForm = () => {
         </fieldset>
         <fieldset class="form-group">
           <label for="mood" class="entry-form__label entry-form__mood-label">Mood</label>
-          <input type="range" class="entry-form__mood" id="mood" name="mood" value="${getDefaultMoodValue()}" min="0" max="9" step="1">
+          <input type="range" class="entry-form__mood" id="mood" name="mood" vmin="0" max="9" step="1">
           <p class="entry-form__mood-emoji">${getDefaultMoodEmoji()}</p>
         </fieldset>
       </div>
@@ -37,21 +37,6 @@ export const JournalEntryForm = () => {
       <input type="submit" class="entry-form__submit btn btn-green" value="Record Journal Entry">
     </form>
   `;
+
+  document.querySelector('.entry-form__date').valueAsDate = new Date();
 };
-
-/**
- * Get the current date string in the format YYYY-MM-DD
- */
-const getTodayDateString = () => {
-  const now = new Date(Date.now());
-  return now.getFullYear() +
-    '-' + padWithLeadingZeroesToTwoDigits(now.getMonth() + 1) +
-    '-' + padWithLeadingZeroesToTwoDigits(now.getDate());
-}
-
-/**
- * Given a string value, pad it with leading zeroes until it is two digits in length
- * E.g.: 6 => 06, 12 => 12
- * @param {String} value 
- */
-const padWithLeadingZeroesToTwoDigits = value => ('0' + value).slice(-2);
