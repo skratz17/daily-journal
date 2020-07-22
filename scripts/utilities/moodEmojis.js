@@ -6,7 +6,7 @@ export const getMoodEmoji = value => {
 
   // verify that value is a number and is in the range of possible emojis
   if(isNaN(value)) return getDefaultMoodEmoji();
-  if(value > moodEmojis.length) value = moodEmojis.length - 1;
+  if(value >= moodEmojis.length) value = moodEmojis.length - 1;
   if(value < 0) value = 0;
 
   return moodEmojis[value];
