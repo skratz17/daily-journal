@@ -1,6 +1,6 @@
 import { getMoodEmoji, getDefaultMoodEmoji, getDefaultMoodValue } from '../utilities/moodEmojis.js';
 
-document.addEventListener('change', event => {
+document.addEventListener('input', event => {
   if(event.target.className === 'entry-form__mood') {
     const moodEmoji = getMoodEmoji(event.target.value);
     document
