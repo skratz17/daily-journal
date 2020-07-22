@@ -27,8 +27,8 @@ export const JournalEntryForm = () => {
         <fieldset class="form-group">
           <label for="mood" class="entry-form__label entry-form__mood-label">Mood</label>
           <input type="range" class="entry-form__mood" id="mood" name="mood" vmin="0" max="9" step="1">
-          <p class="entry-form__mood-emoji">${getDefaultMoodEmoji()}</p>
         </fieldset>
+        <p class="entry-form__mood-emoji">${getDefaultMoodEmoji()}</p>
       </div>
       <fieldset class="form-group">
         <label for="entry" class="entry-form__label entry-form__entry-label">Journal Entry</label>

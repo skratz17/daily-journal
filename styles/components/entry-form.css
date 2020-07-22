@@ -7,9 +7,9 @@
 
 .form-group {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   border: none;
-  width: 100%;
+  flex-basis: 100%;
 }
 
 .entry-form__concepts-and-mood-wrapper {
@@ -17,7 +17,6 @@
 }
 
 .entry-form__label {
-  flex-basis: 100%;
   margin-top: 0.5rem;
   margin-bottom: 0.25rem;
   color: #fff;
@@ -36,16 +35,16 @@
 }
 
 .entry-form__date {
-  flex-basis: 25%
+  width: 25%
 }
 
 .entry-form__concepts,
 .entry-form__mood {
-  flex-basis: 75%;
+  width: 75%;
 }
 
 .entry-form__entry {
-  flex-basis: 100%;
+  width: 100%;
 }
 
 .entry-form__submit {
@@ -56,7 +55,7 @@
 
 .entry-form__mood-emoji {
   margin-left: auto;
-  transform: scale(4);
+  font-size: 4rem;
 }
 
 @media(max-width: 500px) {
