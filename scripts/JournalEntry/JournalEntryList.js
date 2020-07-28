@@ -1,4 +1,4 @@
-import { getJournalEntries, useJournalEntries } from './JournalDataProvider.js';
+import { useJournalEntries } from './JournalDataProvider.js';
 import { JournalEntry } from './JournalEntry.js';
 
 const domNode = document.querySelector('.entries');
