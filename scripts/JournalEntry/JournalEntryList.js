@@ -13,9 +13,6 @@ const render = entries => {
 };
 
 export const JournalEntryList = () => {
-  getJournalEntries()
-    .then(() => {
-      const entries = useJournalEntries();
-      render(entries);
-    });
+  const entries = useJournalEntries();
+  render(entries);
 };
