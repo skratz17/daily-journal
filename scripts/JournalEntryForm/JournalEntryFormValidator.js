@@ -71,12 +71,10 @@ export class JournalEntryFormValidator {
 
     Object.keys(fields).forEach(fieldName => {
       const journalEntryValueToValidate = journalEntry[fieldName];
-      debugger;
       fields[fieldName].forEach(validationInfo => {
         validationInfo.isValid = validationInfo.validator(journalEntryValueToValidate);
       });
     });
-    debugger;
 
     return {
       isValid: this.isValid(),

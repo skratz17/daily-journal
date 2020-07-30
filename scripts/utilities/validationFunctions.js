@@ -6,4 +6,4 @@ export const isDateOnOrAfterCohortStartDate = date => COHORT_START_DATE_TIMESTAM
 
 export const isNotAboutBruceWillis = value => !(value.toLowerCase().includes('bruce willis'));
 
-export const isNotEmpty = value => value.toString().length > 0;
+export const isNotEmpty = value => value.toString().trim().length > 0;
