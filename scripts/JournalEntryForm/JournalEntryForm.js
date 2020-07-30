@@ -1,5 +1,10 @@
+import { saveJournalEntry } from '../JournalEntry/JournalDataProvider.js';
 import { getMoodEmoji, getDefaultMoodEmoji, getDefaultMoodValue, getEmojisCount } from '../utilities/moodEmojis.js';
+import { getTodayDateString } from '../utilities/dateFormatting.js';
 
+/**
+ * Event listener to update mood emoji rendered in form for mood input element
+ */
 document.addEventListener('input', event => {
   if(event.target.className === 'entry-form__mood') {
     const moodEmoji = getMoodEmoji(event.target.value);
@@ -9,12 +14,34 @@ document.addEventListener('input', event => {
   }
 });
 
+/**
+ * Event listener to save new journal entry on form submit
+ */
+document.addEventListener('submit', event => {
+  if(event.target.id === 'entry-form') {
+    event.preventDefault();
+
+    const journalEntry = {};
+
+    const { elements } = event.target;
+    for(const element of elements) {
+      element.disabled = true;
+
+      if(element.nodeName.toLowerCase() !== 'button' && element.nodeName.toLowerCase() !== 'fieldset') {
+        journalEntry[element.name] = element.value;
+      }
+    }
+
+    saveJournalEntry(journalEntry);
+  }
+});
+
 export const JournalEntryForm = () => {
-  const domNode = document.querySelector('.entry-form');
+  const domNode = document.querySelector('.entry-form-container');
 
   domNode.innerHTML = `
     <h2 class="entry-form__header">What Did You Do Today?</h2>
-    <form class="entry-form__form">
+    <form id="entry-form" class="entry-form">
       <fieldset class="form-group">
         <label for="date" class="entry-form__label entry-form__date-label">Date</label>
         <input type="date" class="entry-form__date" id="date" name="date" value="${getTodayDateString()}">
@@ -34,24 +61,7 @@ export const JournalEntryForm = () => {
         <label for="entry" class="entry-form__label entry-form__entry-label">Journal Entry</label>
         <textarea class="entry-form__entry" name="entry" id="entry" cols="30" rows="10"></textarea>
       </fieldset>
-      <input type="submit" class="entry-form__submit btn btn-green" value="Record Journal Entry">
+      <button type="submit" class="entry-form__submit btn btn-green">Record Journal Entry</button>
     </form>
   `;
 };
-
-/**
- * Get a string representing the current date in YYYY-MM-DD format.
- */
-const getTodayDateString = () => {
-  const now = new Date(Date.now());
-  return now.getFullYear() +
-    '-' + padWithLeadingZeroesToTwoDigits(now.getMonth() + 1) +
-    '-' + padWithLeadingZeroesToTwoDigits(now.getDate());
-}
-
-/**
- * Given a string value, pad it with leading zeroes until it is two digits in length
- * E.g.: 6 => 06, 12 => 12
- * @param {String} value 
- */
-const padWithLeadingZeroesToTwoDigits = value => ('0' + value).slice(-2);
