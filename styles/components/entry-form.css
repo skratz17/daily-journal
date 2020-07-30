@@ -35,16 +35,20 @@
   background: var(--light-color);
 }
 
-.entry-form__date {
+.entry-form__date,
+.entry-form__date-errors {
   width: 25%
 }
 
 .entry-form__concept,
-.entry-form__mood {
+.entry-form__concept-errors,
+.entry-form__mood,
+.entry-form__mood-errors {
   width: 75%;
 }
 
-.entry-form__entry {
+.entry-form__entry,
+.entry-form__entry-errors {
   width: 100%;
 }
 
@@ -59,12 +63,23 @@
   font-size: 5rem;
 }
 
+.entry-form__errors {
+  list-style-type: none;
+  margin: 0.25rem 0;
+}
+
+.entry-form__error {
+  color: var(--error-red);
+  background-color: #fff;
+}
+
 @media(max-width: 500px) {
   .entry-form__label {
     margin-top: 1rem;
   }
 
-  .entry-form__date {
+  .entry-form__date,
+  .entry-form__date-errors {
     width: 50%;
   }
 
