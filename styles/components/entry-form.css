@@ -59,6 +59,16 @@
   font-size: 5rem;
 }
 
+.entry-form__errors {
+  width: 25%;
+  list-style-type: none;
+}
+
+.entry-form__error {
+  color: var(--error-red);
+  background-color: #fff;
+}
+
 @media(max-width: 500px) {
   .entry-form__label {
     margin-top: 1rem;

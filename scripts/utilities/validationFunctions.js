@@ -1,0 +1,1 @@
+export const isDateInThePast = date => Date.parse(date) - Date.now() <= 0;
