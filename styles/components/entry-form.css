@@ -1,4 +1,4 @@
-.entry-form {
+.entry-form-container {
   display: flex;
   flex-direction: column;
   padding: 3rem;
@@ -12,7 +12,7 @@
   width: 100%;
 }
 
-.entry-form__concepts-and-mood-wrapper {
+.entry-form__concept-and-mood-wrapper {
   display: flex;
   align-items: center;
 }
@@ -29,7 +29,7 @@
 }
 
 .entry-form__date,
-.entry-form__concepts,
+.entry-form__concept,
 .entry-form__mood,
 .entry-form__entry {
   background: var(--light-color);
@@ -39,7 +39,7 @@
   width: 25%
 }
 
-.entry-form__concepts,
+.entry-form__concept,
 .entry-form__mood {
   width: 75%;
 }
@@ -68,7 +68,7 @@
     width: 50%;
   }
 
-  .entry-form__concepts-and-mood-wrapper {
+  .entry-form__concept-and-mood-wrapper {
     flex-direction: column;
   }
 

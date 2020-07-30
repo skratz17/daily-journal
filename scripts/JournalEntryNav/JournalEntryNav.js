@@ -1,17 +1,26 @@
-import { useJournalEntriesReverseChronological } from '../JournalEntry/JournalDataProvider.js';
+import { getJournalEntries, useJournalEntriesReverseChronological } from '../JournalEntry/JournalDataProvider.js';
 import { JournalEntryNavLink } from './JournalEntryNavLink.js';
 
-export const JournalEntryNav = () => {
-  const domNode = document.querySelector('.entries-nav');
+const contentTarget = document.querySelector('.entries-nav');
+const eventHub = document.querySelector('.container');
 
-  const entries = useJournalEntriesReverseChronological();
-
+const render = entries => {
   const navLinksHTML = entries.map(JournalEntryNavLink).join('\n');
 
-  domNode.innerHTML = `
+  contentTarget.innerHTML = `
     <h2 class="entries-nav__header">Past Entries</h2>
     <nav class="entries-nav">
       ${navLinksHTML}
     </nav>
   `;
+}
+
+export const JournalEntryNav = () => {
+  getJournalEntries()
+    .then(() => {
+      const entries = useJournalEntriesReverseChronological();
+      render(entries);
+    });
 };
+
+eventHub.addEventListener('journalEntriesStateChanged', JournalEntryNav);

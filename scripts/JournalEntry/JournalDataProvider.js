@@ -1,5 +1,12 @@
 let journal = [];
 
+const eventHub = document.querySelector('.container');
+
+const broadcastJournalEntriesStateChanged = () => {
+  const journalEntriesStateChanged = new CustomEvent('journalEntriesStateChanged');
+  eventHub.dispatchEvent(journalEntriesStateChanged);
+};
+
 export const getJournalEntries = () => {
   return fetch('http://localhost:8088/entries')
     .then(res => res.json())
@@ -18,4 +25,16 @@ export const useJournalEntriesReverseChronological = () => {
     (currentEntry, nextEntry) => Date.parse(nextEntry.date) - Date.parse(currentEntry.date)
   );
   return JSON.parse(JSON.stringify(sortedReverseChronological));
+};
+
+export const saveJournalEntry = entry => {
+  fetch('http://localhost:8088/entries', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(entry)
+  })
+    .then(getJournalEntries)
+    .then(broadcastJournalEntriesStateChanged);
 };
