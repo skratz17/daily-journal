@@ -2,6 +2,7 @@ import { getJournalEntries, useJournalEntriesReverseChronological } from '../Jou
 import { JournalEntryNavLink } from './JournalEntryNavLink.js';
 
 const contentTarget = document.querySelector('.entries-nav');
+const eventHub = document.querySelector('.container');
 
 const render = entries => {
   const navLinksHTML = entries.map(JournalEntryNavLink).join('\n');
@@ -21,3 +22,5 @@ export const JournalEntryNav = () => {
       render(entries);
     });
 };
+
+eventHub.addEventListener('journalEntriesStateChanged', JournalEntryNav);
