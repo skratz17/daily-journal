@@ -23,26 +23,26 @@ const render = () => {
   entryFormDOMNode.innerHTML = `
     <h2 class="entry-form__header">What Did You Do Today?</h2>
     <fieldset class="form-group">
-      <ul class="entry-form__errors entry-form__date-errors"></ul>
       <label for="date" class="entry-form__label entry-form__date-label">Date</label>
-      <input type="date" class="entry-form__date" id="date" name="date" value="${defaults.date}">
+      <ul class="entry-form__errors entry-form__date-errors"></ul>
+      <input required type="date" class="entry-form__date" id="date" name="date" value="${defaults.date}">
     </fieldset>
     <div class="entry-form__concept-and-mood-wrapper">
       <fieldset class="form-group">
-        <ul class="entry-form__errors entry-form__concept-errors"></ul>
         <label for="concept" class="entry-form__label entry-form__concept-label">Concepts</label>
+        <ul class="entry-form__errors entry-form__concept-errors"></ul>
         <input type="text" class="entry-form__concept" id="concept" name="concept" value=${defaults.concept}>
       </fieldset>
       <fieldset class="form-group">
-        <ul class="entry-form__errors entry-form__mood-errors"></ul>
         <label for="mood" class="entry-form__label entry-form__mood-label">Mood</label>
+        <ul class="entry-form__errors entry-form__mood-errors"></ul>
         <input type="range" class="entry-form__mood" id="mood" name="mood" value="${defaults.mood}" min="0" max="${getEmojisCount() - 1}" step="1">
       </fieldset>
       <div class="entry-form__mood-emoji">${getDefaultMoodEmoji()}</div>
     </div>
     <fieldset class="form-group">
-      <ul class="entry-form__errors entry-form__entry-errors"></ul>
       <label for="entry" class="entry-form__label entry-form__entry-label">Journal Entry</label>
+      <ul class="entry-form__errors entry-form__entry-errors"></ul>
       <textarea class="entry-form__entry" name="entry" id="entry" cols="30" rows="10" value=${defaults.entry}></textarea>
     </fieldset>
     <button type="submit" class="entry-form__submit btn btn-green">Record Journal Entry</button>
@@ -127,9 +127,9 @@ eventHub.addEventListener('submit', event => {
 
     const journalEntry = createJournalEntryObjectFromFormData();
 
-    const isValid = validator.validate(journalEntry);
+    const { isValid, errors } = validator.validate(journalEntry);
 
-    renderErrors(validator.getErrors());
+    renderErrors(errors);
 
     if(isValid) {
       disableForm();
