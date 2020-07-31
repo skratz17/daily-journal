@@ -23,4 +23,4 @@ export const JournalEntryNav = () => {
     });
 };
 
-eventHub.addEventListener('journalEntriesStateChanged', JournalEntryNav);
+eventHub.addEventListener('journalEntriesStateChanged', () => render(useJournalEntriesReverseChronological()));
