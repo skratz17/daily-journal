@@ -24,4 +24,4 @@ export const JournalEntryList = () => {
 /**
  * Event listener to update journal entry list on state changed.
  */
-eventHub.addEventListener('journalEntriesStateChanged', JournalEntryList);
+eventHub.addEventListener('journalEntriesStateChanged', () => render(useJournalEntries()));
