@@ -5,7 +5,7 @@ const contentTarget = document.querySelector('.entries');
 const eventHub = document.querySelector('.container');
 
 const render = entries => {
-  const entriesHTML = entries.map(JournalEntry).join('\n');
+  const entriesHTML = entries.map(JournalEntry).join('');
 
   contentTarget.innerHTML = `
     <h2 class="entries__header">My Journal</h2>

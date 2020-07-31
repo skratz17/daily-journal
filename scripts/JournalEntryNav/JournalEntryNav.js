@@ -5,7 +5,7 @@ const contentTarget = document.querySelector('.entries-nav');
 const eventHub = document.querySelector('.container');
 
 const render = entries => {
-  const navLinksHTML = entries.map(JournalEntryNavLink).join('\n');
+  const navLinksHTML = entries.map(JournalEntryNavLink).join('');
 
   contentTarget.innerHTML = `
     <h2 class="entries-nav__header">Past Entries</h2>
