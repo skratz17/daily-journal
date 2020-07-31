@@ -1,9 +1,9 @@
 const COHORT_START_DATE_TIMESTAMP = Date.parse('2020-07-06');
 
-export const isDateInThePast = date => Date.parse(date) - Date.now() <= 0;
+export const validateDateIsNotInTheFuture = date => Date.parse(date) - Date.now() <= 0;
 
-export const isDateOnOrAfterCohortStartDate = date => COHORT_START_DATE_TIMESTAMP - Date.parse(date) <= 0;
+export const validateDateIsOnOrAfterCohortStartDate = date => COHORT_START_DATE_TIMESTAMP - Date.parse(date) <= 0;
 
-export const isNotAboutBruceWillis = value => !(value.toLowerCase().includes('bruce willis'));
+export const validateIsNotAboutBruceWillis = value => !(value.toLowerCase().includes('bruce willis'));
 
-export const isNotEmpty = value => value.toString().trim().length > 0;
+export const validateIsNotEmpty = value => value.toString().trim().length > 0;
