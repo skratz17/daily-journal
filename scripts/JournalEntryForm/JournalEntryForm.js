@@ -1,16 +1,11 @@
 import { JournalEntryFormError } from './JournalEntryFormError.js';
-import { JournalEntryFormValidator } from './JournalEntryFormValidator.js';
+import { validator } from './JournalEntryFormValidator.js';
 import { saveJournalEntry } from '../JournalEntry/JournalDataProvider.js';
 import { getMoodEmoji, getDefaultMoodEmoji, getDefaultMoodValue, getEmojisCount } from '../utilities/moodEmojis.js';
 import { getTodayDateString } from '../utilities/dateFormatting.js';
 
 const eventHub = document.querySelector('.container');
 const entryFormDOMNode = document.querySelector('#entry-form');
-
-const validator = new JournalEntryFormValidator();
-
-// will hold reference to DOM node containing mood emoji in form
-let moodEmojiContentTarget;
 
 const defaults = {
   date: getTodayDateString(),
@@ -67,16 +62,27 @@ const createJournalEntryObjectFromFormData = () => {
   }
 
   return journalEntry;
-}
+};
+
+/**
+ * Clear out all error messages from the DOM
+ */
+const clearErrorMessages = () => {
+  document
+    .querySelectorAll('.entry-form__errors')
+    .forEach(errorMessageNode => errorMessageNode.innerHTML = '');
+};
 
 /**
  * Render validation errors to the DOM.
- * @param {Object} errors Object of the form { name of input: [array of error messages for that input] }
+ * @param {Array} errors Array of error objects from the Validator.
  */
 const renderErrors = errors => {
-  Object.keys(errors).forEach(fieldName => {
-    const errorMessageNode = document.querySelector(`.entry-form__${fieldName}-errors`);
-    errorMessageNode.innerHTML = errors[fieldName].map(JournalEntryFormError).join('');
+  clearErrorMessages();
+
+  errors.forEach(error => {
+    const errorMessageNode = document.querySelector(`.entry-form__${error.propertyName}-errors`);
+    errorMessageNode.innerHTML += JournalEntryFormError(error.errorMessage);
   });
 };
 
@@ -90,29 +96,11 @@ const disableForm = () => {
 };
 
 /**
- * Reset entry form to default values for each input, re-enable inputs, and reset displayed mood emoji to its default.
- */
-const resetEntryForm = () => {
-  const { elements } = entryFormDOMNode;
-  for(const element of elements) {
-    element.disabled = false;
-    element.value = defaults[element.name];
-  }
-
-  moodEmojiContentTarget.innerHTML = getDefaultMoodEmoji();
-}
-
-/**
  * Event listener to update mood emoji rendered in form for mood input element.
  */
 eventHub.addEventListener('input', event => {
-
-  // grab reference to (dynamically created) mood emoji container if not already grabbed. this should only happen once, but should happen here b/c we can only be sure of its existence on the DOM once this runs.
-  if(!moodEmojiContentTarget) {
-    moodEmojiContentTarget = document.querySelector('.entry-form__mood-emoji');
-  }
-
   if(event.target.className === 'entry-form__mood') {
+    const moodEmojiContentTarget = document.querySelector('.entry-form__mood-emoji');
     moodEmojiContentTarget.innerHTML = getMoodEmoji(event.target.value);
   }
 });
@@ -127,11 +115,11 @@ eventHub.addEventListener('submit', event => {
 
     const journalEntry = createJournalEntryObjectFromFormData();
 
-    const { isValid, errors } = validator.validate(journalEntry);
+    const errors = validator.validate(journalEntry);
 
     renderErrors(errors);
 
-    if(isValid) {
+    if(errors.length === 0) {
       disableForm();
       saveJournalEntry(journalEntry);
     }
@@ -141,4 +129,4 @@ eventHub.addEventListener('submit', event => {
 /**
  * Event listener to re-render empty and enabled form after successful entry save.
  */
-eventHub.addEventListener('journalEntriesStateChanged', resetEntryForm);
+eventHub.addEventListener('journalEntriesStateChanged', render);
