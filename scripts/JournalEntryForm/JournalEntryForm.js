@@ -1,13 +1,11 @@
 import { JournalEntryFormError } from './JournalEntryFormError.js';
-import { JournalEntryFormValidator } from './JournalEntryFormValidator.js';
+import { validator } from './JournalEntryFormValidator.js';
 import { saveJournalEntry } from '../JournalEntry/JournalDataProvider.js';
 import { getMoodEmoji, getDefaultMoodEmoji, getDefaultMoodValue, getEmojisCount } from '../utilities/moodEmojis.js';
 import { getTodayDateString } from '../utilities/dateFormatting.js';
 
 const eventHub = document.querySelector('.container');
 const entryFormDOMNode = document.querySelector('#entry-form');
-
-const validator = new JournalEntryFormValidator();
 
 // will hold reference to DOM node containing mood emoji in form
 let moodEmojiContentTarget;
