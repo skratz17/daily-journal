@@ -3,7 +3,6 @@ export class Validator {
   errors = []
 
   /**
-   * 
    * @param {function} validator The validator function to add 
    * @param {String} errorMessage The error message to set for this property's validation if the validator returns false
    * @param  {...any} propertyNames The property names that this validator should apply to
