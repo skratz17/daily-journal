@@ -1,4 +1,4 @@
-import { getJournalEntries, useJournalEntries } from './JournalDataProvider.js';
+import { getJournalEntries, useJournalEntriesReverseChronological } from './JournalDataProvider.js';
 import { JournalEntry } from './JournalEntry.js';
 
 const contentTarget = document.querySelector('.entries');
@@ -16,7 +16,7 @@ const render = entries => {
 export const JournalEntryList = () => {
   getJournalEntries()
     .then(() => {
-      const entries = useJournalEntries();
+      const entries = useJournalEntriesReverseChronological();
       render(entries);
     })
 };
@@ -24,4 +24,4 @@ export const JournalEntryList = () => {
 /**
  * Event listener to update journal entry list on state changed.
  */
-eventHub.addEventListener('journalEntriesStateChanged', () => render(useJournalEntries()));
+eventHub.addEventListener('journalEntriesStateChanged', () => render(useJournalEntriesReverseChronological()));

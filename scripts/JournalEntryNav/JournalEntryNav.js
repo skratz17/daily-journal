@@ -1,4 +1,4 @@
-import { getJournalEntries, useJournalEntriesReverseChronological } from '../JournalEntry/JournalDataProvider.js';
+import { getJournalEntries, useJournalEntries } from '../JournalEntry/JournalDataProvider.js';
 import { JournalEntryNavLink } from './JournalEntryNavLink.js';
 
 const contentTarget = document.querySelector('.entries-nav');
@@ -18,9 +18,9 @@ const render = entries => {
 export const JournalEntryNav = () => {
   getJournalEntries()
     .then(() => {
-      const entries = useJournalEntriesReverseChronological();
+      const entries = useJournalEntries();
       render(entries);
     });
 };
 
-eventHub.addEventListener('journalEntriesStateChanged', () => render(useJournalEntriesReverseChronological()));
+eventHub.addEventListener('journalEntriesStateChanged', () => render(useJournalEntries()));
