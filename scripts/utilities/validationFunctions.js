@@ -7,3 +7,5 @@ export const validateDateIsOnOrAfterCohortStartDate = date => COHORT_START_DATE_
 export const validateIsNotAboutBruceWillis = value => !(value.toLowerCase().includes('bruce willis'));
 
 export const validateIsNotEmpty = value => value.toString().trim().length > 0;
+
+export const validateMoodIsNotWorstPossible = value => value > 0;
