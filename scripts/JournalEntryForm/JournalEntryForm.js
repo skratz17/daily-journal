@@ -2,7 +2,7 @@ import { JournalEntryFormHTML } from './JournalEntryFormHTML.js';
 import { JournalEntryFormError } from './JournalEntryFormError.js';
 import { getMoodEmoji } from '../utilities/moodEmojis.js';
 import { validator } from './JournalEntryFormValidator.js';
-import { saveJournalEntry } from '../JournalEntry/JournalDataProvider.js';
+import { saveJournalEntry, updateJournalEntry } from '../JournalEntry/JournalDataProvider.js';
 
 const eventHub = document.querySelector('.container');
 const entryFormDOMNode = document.querySelector('.entry-form-container');
@@ -69,7 +69,8 @@ const disableForm = id => {
  */
 eventHub.addEventListener('input', event => {
   if(event.target.className === 'entry-form__mood') {
-    const moodEmojiContentTarget = document.querySelector('.entry-form__mood-emoji');
+    const id = event.target.id.split('--')[1];
+    const moodEmojiContentTarget = document.querySelector(`#entry-form__mood-emoji${id ? `--${id}` : ''}`);
     moodEmojiContentTarget.innerHTML = getMoodEmoji(event.target.value);
   }
 });
@@ -79,10 +80,10 @@ eventHub.addEventListener('input', event => {
  * Only saves if the journalEntry object passes all validation tests, renders errors to DOM if errors detected in object.
  */
 eventHub.addEventListener('submit', event => {
-  if(event.target.id.startsWith('entry-form')) {
+  if(event.target.getAttribute('id').startsWith('entry-form')) {
     event.preventDefault();
 
-    const id = event.target.id.split('--')[1];
+    const id = event.target.getAttribute('id').split('--')[1];
 
     const journalEntry = createJournalEntryObjectFromFormData(id);
 
@@ -92,7 +93,13 @@ eventHub.addEventListener('submit', event => {
 
     if(errors.length === 0) {
       disableForm(id);
-      saveJournalEntry(journalEntry);
+
+      if(id) {
+        updateJournalEntry(journalEntry);
+      }
+      else {
+        saveJournalEntry(journalEntry);
+      }
     }
   }
 });

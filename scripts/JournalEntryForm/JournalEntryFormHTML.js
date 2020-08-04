@@ -30,16 +30,16 @@ export const JournalEntryFormHTML = (journalEntry = false) => {
         <fieldset class="form-group">
           <label for="mood" class="entry-form__label entry-form__mood-label">Mood</label>
           <ul class="entry-form__errors entry-form__mood-errors"></ul>
-          <input type="range" class="entry-form__mood" id="mood" name="mood" value="${escapeHTML(mood)}" min="0" max="${getEmojisCount() - 1}" step="1">
+          <input type="range" class="entry-form__mood" id="mood${id ? `--${id}` : ''}" name="mood" value="${escapeHTML(mood)}" min="0" max="${getEmojisCount() - 1}" step="1">
         </fieldset>
-        <div class="entry-form__mood-emoji">${getMoodEmoji(mood)}</div>
+        <div id="entry-form__mood-emoji${id ? `--${id}` : ''}" class="entry-form__mood-emoji">${getMoodEmoji(mood)}</div>
       </div>
       <fieldset class="form-group">
         <label for="entry" class="entry-form__label entry-form__entry-label">Journal Entry</label>
         <ul class="entry-form__errors entry-form__entry-errors"></ul>
         <textarea class="entry-form__entry" name="entry" id="entry" cols="30" rows="10">${escapeHTML(entry)}</textarea>
       </fieldset>
-      <input type="hidden" name="entryId" id="entryId" value="${id || ''}">
+      <input type="hidden" name="id" id="entryId" value="${id || ''}">
       <button type="submit" class="entry-form__submit btn btn-green">Record Journal Entry</button>
     </form>
   `;

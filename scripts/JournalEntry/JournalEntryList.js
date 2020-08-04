@@ -29,7 +29,10 @@ export const JournalEntryList = () => {
 /**
  * Event listener to update journal entry list on state changed.
  */
-eventHub.addEventListener('journalEntriesStateChanged', () => render(useJournalEntriesReverseChronological()));
+eventHub.addEventListener('journalEntriesStateChanged', () => {
+  editingJournalEntryId = 0;
+  render(useJournalEntriesReverseChronological());
+});
 
 eventHub.addEventListener('editEntryButtonClicked', event => {
   const entryId = event.detail.entryId;
