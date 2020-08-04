@@ -13,3 +13,7 @@
 .btn-green:hover {
   transform: scale(1.1);
 }
+
+.btn-blue {
+  background-color: var(--normal-blue);
+}

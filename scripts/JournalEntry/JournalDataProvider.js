@@ -38,3 +38,16 @@ export const saveJournalEntry = entry => {
     .then(getJournalEntries)
     .then(broadcastJournalEntriesStateChanged);
 };
+
+export const updateJournalEntry = entry => {
+  const { id } = entry;
+  fetch(`http://localhost:8088/entries/${id}` ,{
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(entry)
+  })
+    .then(getJournalEntries)
+    .then(broadcastJournalEntriesStateChanged);
+};

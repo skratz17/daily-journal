@@ -73,6 +73,28 @@
   background-color: #fff;
 }
 
+/* ENTRY FORM IN CONTEXT OF ENTRY LIST */
+
+.entries .entry-form {
+  background-color: var(--light-color);
+  color: #000;
+  margin: 2rem;
+  border-radius: 5px;
+  padding: 2rem;
+}
+
+.entries .entry-form__header,
+.entries .entry-form__label {
+  color: #000;
+}
+
+.entries .entry-form__date,
+.entries .entry-form__concept,
+.entries .entry-form__mood,
+.entries .entry-form__entry {
+  background-color: #fff;
+}
+
 @media(max-width: 500px) {
   .entry-form__label {
     margin-top: 1rem;
