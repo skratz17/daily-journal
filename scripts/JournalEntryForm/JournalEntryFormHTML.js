@@ -9,7 +9,7 @@ const defaults = {
   entry: ''
 };
 
-export const JournalEntryFormHTML = (journalEntry = false) => {
+export const JournalEntryFormHTML = (journalEntry) => {
   const initialValuesObject = journalEntry || defaults;
   const { date, concept, mood, entry, id } = initialValuesObject;
 
