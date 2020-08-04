@@ -1,14 +1,15 @@
 import { getJournalEntries, useJournalEntriesReverseChronological } from './JournalDataProvider.js';
 import { JournalEntry } from './JournalEntry.js';
+import { JournalEntryFormHTML } from '../JournalEntryForm/JournalEntryFormHTML.js';
 
 const contentTarget = document.querySelector('.entries');
 const eventHub = document.querySelector('.container');
 
-let editingJournalEntry;
+let editingJournalEntryId;
 
 const render = entries => {
   const entriesHTML = entries.map(entry => 
-    entry.id === editingJournalEntry ? '<div>editing</div>' : JournalEntry(entry)
+    entry.id === editingJournalEntryId ? JournalEntryFormHTML(entry) : JournalEntry(entry)
   ).join('');
 
   contentTarget.innerHTML = `
@@ -22,7 +23,7 @@ export const JournalEntryList = () => {
     .then(() => {
       const entries = useJournalEntriesReverseChronological();
       render(entries);
-    })
+    });
 };
 
 /**
@@ -33,6 +34,6 @@ eventHub.addEventListener('journalEntriesStateChanged', () => render(useJournalE
 eventHub.addEventListener('editEntryButtonClicked', event => {
   const entryId = event.detail.entryId;
 
-  editingJournalEntry = entryId;
+  editingJournalEntryId = entryId;
   render(useJournalEntriesReverseChronological());
 });

@@ -1,23 +1,29 @@
 import { JournalEntryFormHTML } from './JournalEntryFormHTML.js';
+import { JournalEntryFormError } from './JournalEntryFormError.js';
 import { getMoodEmoji } from '../utilities/moodEmojis.js';
 import { validator } from './JournalEntryFormValidator.js';
-import { JournalEntryFormError } from './JournalEntryFormError.js';
 import { saveJournalEntry } from '../JournalEntry/JournalDataProvider.js';
 
 const eventHub = document.querySelector('.container');
-const entryFormDOMNode = document.querySelector('#entry-form');
+const entryFormDOMNode = document.querySelector('.entry-form-container');
 
-export const JournalEntryForm = () => {
-  entryFormDOMNode.innerHTML = JournalEntryFormHTML();
+export const JournalEntryForm = (journalEntry = false) => {
+  entryFormDOMNode.innerHTML = JournalEntryFormHTML(journalEntry);
+};
+
+const getFormSelector = id => {
+  let formSelector = '#entry-form';
+  if(id) formSelector += `--${id}`;
+  return formSelector;
 };
 
 /**
  * Factory function to create a journalEntry object from the current data in the form.
  */
-const createJournalEntryObjectFromFormData = () => {
+const createJournalEntryObjectFromFormData = (id) => {
   const journalEntry = {};
 
-  const { elements } = entryFormDOMNode;
+  const { elements } = document.querySelector(getFormSelector(id));
   for(const element of elements) {
     if(element.nodeName.toLowerCase() !== 'button' && element.nodeName.toLowerCase() !== 'fieldset') {
       journalEntry[element.name] = element.value;
@@ -30,9 +36,9 @@ const createJournalEntryObjectFromFormData = () => {
 /**
  * Clear out all error messages from the DOM
  */
-const clearErrorMessages = () => {
+const clearErrorMessages = id => {
   document
-    .querySelectorAll('.entry-form__errors')
+    .querySelectorAll(`${getFormSelector(id)} .entry-form__errors`)
     .forEach(errorMessageNode => errorMessageNode.innerHTML = '');
 };
 
@@ -40,11 +46,11 @@ const clearErrorMessages = () => {
  * Render validation errors to the DOM.
  * @param {Array} errors Array of error objects from the Validator.
  */
-const renderErrors = errors => {
-  clearErrorMessages();
+const renderErrors = (errors, id) => {
+  clearErrorMessages(id);
 
   errors.forEach(error => {
-    const errorMessageNode = document.querySelector(`.entry-form__${error.propertyName}-errors`);
+    const errorMessageNode = document.querySelector(`${getFormSelector(id)} .entry-form__${error.propertyName}-errors`);
     errorMessageNode.innerHTML += JournalEntryFormError(error.errorMessage);
   });
 };
@@ -52,8 +58,8 @@ const renderErrors = errors => {
 /**
  * Set the disabled attribute for each input in the form to true.
  */
-const disableForm = () => {
-  for(const element of entryFormDOMNode.elements) {
+const disableForm = id => {
+  for(const element of document.querySelector(getFormSelector(id)).elements) {
     element.disabled = true;
   }
 };
@@ -73,17 +79,19 @@ eventHub.addEventListener('input', event => {
  * Only saves if the journalEntry object passes all validation tests, renders errors to DOM if errors detected in object.
  */
 eventHub.addEventListener('submit', event => {
-  if(event.target.id === 'entry-form') {
+  if(event.target.id.startsWith('entry-form')) {
     event.preventDefault();
 
-    const journalEntry = createJournalEntryObjectFromFormData();
+    const id = event.target.id.split('--')[1];
+
+    const journalEntry = createJournalEntryObjectFromFormData(id);
 
     const errors = validator.validate(journalEntry);
 
-    renderErrors(errors);
+    renderErrors(errors, id);
 
     if(errors.length === 0) {
-      disableForm();
+      disableForm(id);
       saveJournalEntry(journalEntry);
     }
   }
@@ -92,4 +100,4 @@ eventHub.addEventListener('submit', event => {
 /**
  * Event listener to re-render empty and enabled form after successful entry save.
  */
-eventHub.addEventListener('journalEntriesStateChanged', JournalEntryForm);
+eventHub.addEventListener('journalEntriesStateChanged', () => JournalEntryForm());
