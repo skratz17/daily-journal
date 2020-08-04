@@ -16,7 +16,9 @@ export const JournalEntry = journalEntry => {
         <p class="journal-entry__mood">Mood: ${moodEmoji}</p>
       </div>
       <p class="journal-entry__entry">${escape(entry)}</p>
-      <button id="edit-entry--${escape(id)}}">Edit</button>
+      <div class="journal-entry__edit-button-wrapper">
+        <button id="edit-entry--${escape(id)}" class="btn btn-blue journal-entry__edit-button">Edit</button>
+      </div>
     </article>
   `;
 };

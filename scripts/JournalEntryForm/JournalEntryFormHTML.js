@@ -15,7 +15,7 @@ export const JournalEntryFormHTML = (journalEntry = false) => {
 
   return `
     <form id="entry-form${id ? `--${id}` : ''}" class="entry-form">
-      <h2 class="entry-form__header">What Did You Do Today?</h2>
+      <h2 class="entry-form__header">${id ? `Update Entry from ${escapeHTML(date)}` : 'What Did You Do Today?'}</h2>
       <fieldset class="form-group">
         <label for="date" class="entry-form__label entry-form__date-label">Date</label>
         <ul class="entry-form__errors entry-form__date-errors"></ul>

@@ -38,6 +38,15 @@
   margin-bottom: 0;
 }
 
+.journal-entry__edit-button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.journal-entry__edit-button {
+  color: #fff;
+}
+
 @media(max-width: 500px) {
   .entries {
     padding: 1rem;
