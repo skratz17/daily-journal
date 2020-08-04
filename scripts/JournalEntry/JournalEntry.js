@@ -1,6 +1,8 @@
 import escape from '../utilities/escapeHTML.js';
 import { getMoodEmoji } from '../utilities/moodEmojis.js';
 
+const eventHub = document.querySelector('.container');
+
 export const JournalEntry = journalEntry => {
   const { id, date, concept, entry, mood } = journalEntry;
 
@@ -14,6 +16,20 @@ export const JournalEntry = journalEntry => {
         <p class="journal-entry__mood">Mood: ${moodEmoji}</p>
       </div>
       <p class="journal-entry__entry">${escape(entry)}</p>
+      <button id="edit-entry--${escape(id)}}">Edit</button>
     </article>
   `;
 };
+
+eventHub.addEventListener('click', event => {
+  if(event.target.id.startsWith('edit-entry--')) {
+    const entryId = event.target.id.split('--')[1];
+
+    const editEntryButtonClickedEvent = new CustomEvent('editEntryButtonClicked', {
+      detail: { 
+        entryId: parseInt(entryId)
+      }
+    });
+    eventHub.dispatchEvent(editEntryButtonClickedEvent);
+  }
+});
