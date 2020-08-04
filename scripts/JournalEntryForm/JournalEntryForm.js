@@ -1,5 +1,5 @@
-import { getTodayDateString } from '../utilities/dateFormatting.js';
-import { getMoodEmoji, getDefaultMoodEmoji, getDefaultMoodValue, getEmojisCount } from '../utilities/moodEmojis.js';
+import { JournalEntryFormHTML } from './JournalEntryFormHTML.js';
+import { getMoodEmoji } from '../utilities/moodEmojis.js';
 import { validator } from './JournalEntryFormValidator.js';
 import { JournalEntryFormError } from './JournalEntryFormError.js';
 import { saveJournalEntry } from '../JournalEntry/JournalDataProvider.js';
@@ -7,38 +7,8 @@ import { saveJournalEntry } from '../JournalEntry/JournalDataProvider.js';
 const eventHub = document.querySelector('.container');
 const entryFormDOMNode = document.querySelector('#entry-form');
 
-const render = () => {
-  entryFormDOMNode.innerHTML = `
-    <h2 class="entry-form__header">What Did You Do Today?</h2>
-    <fieldset class="form-group">
-      <label for="date" class="entry-form__label entry-form__date-label">Date</label>
-      <ul class="entry-form__errors entry-form__date-errors"></ul>
-      <input required type="date" class="entry-form__date" id="date" name="date" value="${getTodayDateString()}">
-    </fieldset>
-    <div class="entry-form__concept-and-mood-wrapper">
-      <fieldset class="form-group">
-        <label for="concept" class="entry-form__label entry-form__concept-label">Concepts</label>
-        <ul class="entry-form__errors entry-form__concept-errors"></ul>
-        <input type="text" class="entry-form__concept" id="concept" name="concept">
-      </fieldset>
-      <fieldset class="form-group">
-        <label for="mood" class="entry-form__label entry-form__mood-label">Mood</label>
-        <ul class="entry-form__errors entry-form__mood-errors"></ul>
-        <input type="range" class="entry-form__mood" id="mood" name="mood" value="${getDefaultMoodValue()}" min="0" max="${getEmojisCount() - 1}" step="1">
-      </fieldset>
-      <div class="entry-form__mood-emoji">${getDefaultMoodEmoji()}</div>
-    </div>
-    <fieldset class="form-group">
-      <label for="entry" class="entry-form__label entry-form__entry-label">Journal Entry</label>
-      <ul class="entry-form__errors entry-form__entry-errors"></ul>
-      <textarea class="entry-form__entry" name="entry" id="entry" cols="30" rows="10"></textarea>
-    </fieldset>
-    <button type="submit" class="entry-form__submit btn btn-green">Record Journal Entry</button>
-  `;
-};
-
 export const JournalEntryForm = () => {
-  render();
+  entryFormDOMNode.innerHTML = JournalEntryFormHTML();
 };
 
 /**
@@ -122,4 +92,4 @@ eventHub.addEventListener('submit', event => {
 /**
  * Event listener to re-render empty and enabled form after successful entry save.
  */
-eventHub.addEventListener('journalEntriesStateChanged', render);
+eventHub.addEventListener('journalEntriesStateChanged', JournalEntryForm);
