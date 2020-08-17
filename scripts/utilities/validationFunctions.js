@@ -1,3 +1,5 @@
+import { useMoodById } from '../Moods/MoodProvider.js';
+
 const COHORT_START_DATE_TIMESTAMP = Date.parse('2020-07-06');
 
 export const validateDateIsNotInTheFuture = date => Date.parse(date) - Date.now() <= 0;
@@ -8,4 +10,4 @@ export const validateIsNotAboutBruceWillis = value => !(value.toLowerCase().incl
 
 export const validateIsNotEmpty = value => value.toString().trim().length > 0;
 
-export const validateMoodIsNotWorstPossible = value => value > 0;
+export const validateMoodIsNotWorstPossible = id => useMoodById(id).value > 0;

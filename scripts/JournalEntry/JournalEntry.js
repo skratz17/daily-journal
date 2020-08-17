@@ -1,12 +1,12 @@
 import escape from '../utilities/escapeHTML.js';
-import { getMoodEmojiByValue } from '../Moods/MoodProvider.js';
+import { useMoodById } from '../Moods/MoodProvider.js';
 
 const eventHub = document.querySelector('.container');
 
 export const JournalEntry = journalEntry => {
-  const { id, date, concept, entry, mood } = journalEntry;
+  const { id, date, concept, entry, moodId } = journalEntry;
 
-  const moodEmoji = getMoodEmojiByValue(mood);
+  const moodEmoji = useMoodById(moodId).label;
 
   return `
     <article id="entry--${escape(id)}" class="journal-entry">

@@ -1,39 +1,18 @@
 {
   "entries": [
     {
-      "date": "2020-08-04",
-      "concept": "FIRST ENTRY!~!!!!!!",
-      "mood": "4",
-      "entry": "upside down faceman!!!!!asdfasdf",
-      "id": 1
+      "date": "2020-08-17",
+      "concept": "asdf",
+      "entry": "asdf",
+      "id": 1,
+      "moodId": 2
     },
     {
-      "date": "2020-08-03",
-      "concept": "SECOND ENTRY!",
-      "mood": "8",
-      "entry": "!",
-      "id": 2
-    },
-    {
-      "date": "2020-08-02",
-      "concept": "cowpoke",
-      "mood": "9",
-      "entry": "cow poke!!!",
-      "id": 3
-    },
-    {
-      "date": "2020-08-01",
-      "concept": "Jhäcobb",
-      "mood": "2",
-      "entry": "he mad!",
-      "id": 4
-    },
-    {
-      "date": "2020-07-31",
-      "concept": "FIFTH ENTRY",
-      "mood": "5",
-      "entry": "upsided won",
-      "id": 5
+      "date": "2020-08-17",
+      "concept": "asdfasdf",
+      "entry": "asdfasdfasdfasdf",
+      "id": 2,
+      "moodId": 2
     }
   ],
   "moods": [

@@ -4,7 +4,7 @@
 
 import { JournalEntryFormHTML } from './JournalEntryFormHTML.js';
 import { JournalEntryFormError } from './JournalEntryFormError.js';
-import { getMoodEmojiByValue, getMoods } from '../Moods/MoodProvider.js';
+import { useMoodByValue, getMoods } from '../Moods/MoodProvider.js';
 import { validator } from './JournalEntryFormValidator.js';
 import { saveJournalEntry, updateJournalEntry } from '../JournalEntry/JournalDataProvider.js';
 
@@ -45,6 +45,9 @@ const createJournalEntryObjectFromFormData = (id) => {
       journalEntry[element.name] = element.value;
     }
   }
+
+  journalEntry.moodId = useMoodByValue(journalEntry.mood).id;
+  delete journalEntry.mood;
 
   return journalEntry;
 };
@@ -90,7 +93,8 @@ eventHub.addEventListener('input', event => {
   if(event.target.className === 'entry-form__mood') {
     const id = event.target.id.split('--')[1];
     const moodEmojiContentTarget = document.querySelector(`#entry-form__mood-emoji${id ? `--${id}` : ''}`);
-    moodEmojiContentTarget.innerHTML = getMoodEmojiByValue(event.target.value);
+    const moodEmoji = useMoodByValue(event.target.value).label;
+    moodEmojiContentTarget.innerHTML = moodEmoji;
   }
 });
 

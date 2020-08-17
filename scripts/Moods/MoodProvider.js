@@ -10,16 +10,20 @@ export const getMoods = () => {
 
 export const useMoods = () => moods.slice();
 
-export const getMoodEmojiByValue = value => {
+export const useMoodByValue = value => {
   value = parseInt(value);
-  const foundMood = moods.find(mood => mood.value === value);
-  return foundMood.label;
-}
+  return moods.find(mood => mood.value === value);
+};
+
+export const useMoodById = id => {
+  id = parseInt(id);
+  return moods.find(mood => mood.id === id);
+};
 
 export const getDefaultMoodEmoji = () => {
   return moods.find(mood => mood.value === DEFAULT_MOOD_VALUE);
-}
+};
 
-export const getDefaultMoodValue = () => DEFAULT_MOOD_VALUE
+export const getDefaultMoodValue = () => DEFAULT_MOOD_VALUE;
 
 export const getMoodsCount = () => moods.length;
