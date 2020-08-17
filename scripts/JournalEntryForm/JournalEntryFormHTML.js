@@ -1,18 +1,18 @@
 import { getTodayDateString } from '../utilities/dateFormatting.js';
-import { useMoodByValue, getDefaultMoodValue, getMoodsCount, useMoodById } from '../Moods/MoodProvider.js';
+import { getDefaultMood, getMoodsCount } from '../Moods/MoodProvider.js';
 import escapeHTML from '../utilities/escapeHTML.js';
 
-const defaults = {
-  date: getTodayDateString(),
-  concept: '',
-  entry: ''
-};
-
 export const JournalEntryFormHTML = (journalEntry) => {
-  const initialValuesObject = journalEntry || defaults;
-  const { date, concept, moodId, entry, id } = initialValuesObject;
+  const defaults = {
+    date: getTodayDateString(),
+    concept: '',
+    mood: getDefaultMood(),
+    entry: ''
+  };
 
-  const mood = useMoodById(moodId) || useMoodByValue(getDefaultMoodValue());
+  const initialValuesObject = journalEntry || defaults;
+  const { date, concept, mood, entry, id } = initialValuesObject;
+
   const moodEmoji = mood.label;
   const moodValue = mood.value;
 

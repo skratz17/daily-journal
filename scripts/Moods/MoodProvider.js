@@ -20,7 +20,7 @@ export const useMoodById = id => {
   return moods.find(mood => mood.id === id);
 };
 
-export const getDefaultMoodEmoji = () => {
+export const getDefaultMood = () => {
   return moods.find(mood => mood.value === DEFAULT_MOOD_VALUE);
 };
 
