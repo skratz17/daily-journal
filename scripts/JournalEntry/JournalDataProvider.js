@@ -51,3 +51,11 @@ export const updateJournalEntry = entry => {
     .then(getJournalEntries)
     .then(broadcastJournalEntriesStateChanged);
 };
+
+export const deleteJournalEntry = id => {
+  fetch(`http://localhost:8088/entries/${id}`, {
+    method: 'DELETE'
+  })
+    .then(getJournalEntries)
+    .then(broadcastJournalEntriesStateChanged);
+};

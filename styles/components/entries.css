@@ -38,13 +38,13 @@
   margin-bottom: 0;
 }
 
-.journal-entry__edit-button-wrapper {
+.journal-entry__buttons-wrapper {
   display: flex;
   justify-content: flex-end;
 }
 
 .journal-entry__edit-button {
-  color: #fff;
+  margin-right: 1rem;
 }
 
 @media(max-width: 500px) {
