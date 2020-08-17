@@ -16,4 +16,10 @@
 
 .btn-blue {
   background-color: var(--normal-blue);
+  color: #fff;
+}
+
+.btn-red {
+  background-color: var(--error-red);
+  color: #fff;
 }

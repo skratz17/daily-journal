@@ -1,34 +1,5 @@
 {
-  "entries": [
-    {
-      "date": "2020-08-14",
-      "concept": "asdfasdfasdfasdfasdfsdfasdfasdfasdf",
-      "entry": "johnnn",
-      "id": 1,
-      "moodId": 7
-    },
-    {
-      "date": "2020-08-17",
-      "concept": "asdfasdf",
-      "entry": "asdfasdfasdfasdf",
-      "id": 2,
-      "moodId": 3
-    },
-    {
-      "date": "2020-08-05",
-      "concept": "August 5, Cowb oy",
-      "entry": "FRUMMMMM!",
-      "id": 3,
-      "moodId": 10
-    },
-    {
-      "date": "2020-08-11",
-      "concept": "asdfasdfasdf",
-      "entry": "criii",
-      "id": 4,
-      "moodId": 4
-    }
-  ],
+  "entries": [],
   "moods": [
     {
       "id": 1,
