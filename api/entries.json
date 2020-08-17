@@ -1,0 +1,91 @@
+{
+  "entries": [
+    {
+      "date": "2020-08-04",
+      "concept": "FIRST ENTRY!~!!!!!!",
+      "mood": "4",
+      "entry": "upside down faceman!!!!!asdfasdf",
+      "id": 1
+    },
+    {
+      "date": "2020-08-03",
+      "concept": "SECOND ENTRY!",
+      "mood": "8",
+      "entry": "!",
+      "id": 2
+    },
+    {
+      "date": "2020-08-02",
+      "concept": "cowpoke",
+      "mood": "9",
+      "entry": "cow poke!!!",
+      "id": 3
+    },
+    {
+      "date": "2020-08-01",
+      "concept": "Jhäcobb",
+      "mood": "2",
+      "entry": "he mad!",
+      "id": 4
+    },
+    {
+      "date": "2020-07-31",
+      "concept": "FIFTH ENTRY",
+      "mood": "5",
+      "entry": "upsided won",
+      "id": 5
+    }
+  ],
+  "moods": [
+    {
+      "id": 1,
+      "value": 0,
+      "label": "👿"
+    },
+    {
+      "id": 2,
+      "value": 1,
+      "label": "🤬"
+    },
+    {
+      "id": 3,
+      "value": 2,
+      "label": "😡"
+    },
+    {
+      "id": 4,
+      "value": 3,
+      "label": "😭"
+    },
+    {
+      "id": 5,
+      "value": 4,
+      "label": "😕"
+    },
+    {
+      "id": 6,
+      "value": 5,
+      "label": "🙃"
+    },
+    {
+      "id": 7,
+      "value": 6,
+      "label": "🙂"
+    },
+    {
+      "id": 8,
+      "value": 7,
+      "label": "😀"
+    },
+    {
+      "id": 9,
+      "value": 8,
+      "label": "😁"
+    },
+    {
+      "id": 10,
+      "value": 9,
+      "label": "🤠"
+    }
+  ]
+}

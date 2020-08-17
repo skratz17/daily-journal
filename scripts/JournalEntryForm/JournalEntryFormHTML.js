@@ -1,5 +1,5 @@
 import { getTodayDateString } from '../utilities/dateFormatting.js';
-import { getMoodEmoji, getDefaultMoodValue, getEmojisCount } from '../utilities/moodEmojis.js';
+import { getMoodEmojiByValue, getDefaultMoodValue, getMoodsCount } from '../Moods/MoodProvider.js';
 import escapeHTML from '../utilities/escapeHTML.js';
 
 const defaults = {
@@ -30,9 +30,9 @@ export const JournalEntryFormHTML = (journalEntry) => {
         <fieldset class="form-group">
           <label for="mood" class="entry-form__label entry-form__mood-label">Mood</label>
           <ul class="entry-form__errors entry-form__mood-errors"></ul>
-          <input type="range" class="entry-form__mood" id="mood${id ? `--${id}` : ''}" name="mood" value="${escapeHTML(mood)}" min="0" max="${getEmojisCount() - 1}" step="1">
+          <input type="range" class="entry-form__mood" id="mood${id ? `--${id}` : ''}" name="mood" value="${escapeHTML(mood)}" min="0" max="${getMoodsCount() - 1}" step="1">
         </fieldset>
-        <div id="entry-form__mood-emoji${id ? `--${id}` : ''}" class="entry-form__mood-emoji">${getMoodEmoji(mood)}</div>
+        <div id="entry-form__mood-emoji${id ? `--${id}` : ''}" class="entry-form__mood-emoji">${getMoodEmojiByValue(mood)}</div>
       </div>
       <fieldset class="form-group">
         <label for="entry" class="entry-form__label entry-form__entry-label">Journal Entry</label>

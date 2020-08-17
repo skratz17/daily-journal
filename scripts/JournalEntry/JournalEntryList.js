@@ -1,6 +1,7 @@
 import { getJournalEntries, useJournalEntriesReverseChronological } from './JournalDataProvider.js';
 import { JournalEntry } from './JournalEntry.js';
 import { JournalEntryFormHTML } from '../JournalEntryForm/JournalEntryFormHTML.js';
+import { getMoods } from '../Moods/MoodProvider.js';
 
 const contentTarget = document.querySelector('.entries');
 const eventHub = document.querySelector('.container');
@@ -20,6 +21,7 @@ const render = entries => {
 
 export const JournalEntryList = () => {
   getJournalEntries()
+    .then(getMoods)
     .then(() => {
       const entries = useJournalEntriesReverseChronological();
       render(entries);
