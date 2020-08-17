@@ -4,7 +4,7 @@
 
 import { JournalEntryFormHTML } from './JournalEntryFormHTML.js';
 import { JournalEntryFormError } from './JournalEntryFormError.js';
-import { getMoodEmoji } from '../utilities/moodEmojis.js';
+import { useMoodByValue, getMoods } from '../Moods/MoodProvider.js';
 import { validator } from './JournalEntryFormValidator.js';
 import { saveJournalEntry, updateJournalEntry } from '../JournalEntry/JournalDataProvider.js';
 
@@ -14,9 +14,12 @@ const eventHub = document.querySelector('.container');
  * Render a Journal Entry Form directly to the DOM node with class .entry-form-container
  */
 export const JournalEntryForm = () => {
-  document
-    .querySelector('.entry-form-container')
-    .innerHTML = JournalEntryFormHTML();
+  getMoods()
+    .then(() => {
+      document
+        .querySelector('.entry-form-container')
+        .innerHTML = JournalEntryFormHTML();
+    })
 };
 
 /**
@@ -42,6 +45,9 @@ const createJournalEntryObjectFromFormData = (id) => {
       journalEntry[element.name] = element.value;
     }
   }
+
+  journalEntry.moodId = useMoodByValue(journalEntry.mood).id;
+  delete journalEntry.mood;
 
   return journalEntry;
 };
@@ -87,7 +93,8 @@ eventHub.addEventListener('input', event => {
   if(event.target.className === 'entry-form__mood') {
     const id = event.target.id.split('--')[1];
     const moodEmojiContentTarget = document.querySelector(`#entry-form__mood-emoji${id ? `--${id}` : ''}`);
-    moodEmojiContentTarget.innerHTML = getMoodEmoji(event.target.value);
+    const moodEmoji = useMoodByValue(event.target.value).label;
+    moodEmojiContentTarget.innerHTML = moodEmoji;
   }
 });
 

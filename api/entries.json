@@ -1,0 +1,84 @@
+{
+  "entries": [
+    {
+      "date": "2020-08-14",
+      "concept": "asdfasdfasdfasdfasdfsdfasdfasdfasdf",
+      "entry": "johnnn",
+      "id": 1,
+      "moodId": 7
+    },
+    {
+      "date": "2020-08-17",
+      "concept": "asdfasdf",
+      "entry": "asdfasdfasdfasdf",
+      "id": 2,
+      "moodId": 3
+    },
+    {
+      "date": "2020-08-05",
+      "concept": "August 5, Cowb oy",
+      "entry": "FRUMMMMM!",
+      "id": 3,
+      "moodId": 10
+    },
+    {
+      "date": "2020-08-11",
+      "concept": "asdfasdfasdf",
+      "entry": "criii",
+      "id": 4,
+      "moodId": 4
+    }
+  ],
+  "moods": [
+    {
+      "id": 1,
+      "value": 0,
+      "label": "👿"
+    },
+    {
+      "id": 2,
+      "value": 1,
+      "label": "🤬"
+    },
+    {
+      "id": 3,
+      "value": 2,
+      "label": "😡"
+    },
+    {
+      "id": 4,
+      "value": 3,
+      "label": "😭"
+    },
+    {
+      "id": 5,
+      "value": 4,
+      "label": "😕"
+    },
+    {
+      "id": 6,
+      "value": 5,
+      "label": "🙃"
+    },
+    {
+      "id": 7,
+      "value": 6,
+      "label": "🙂"
+    },
+    {
+      "id": 8,
+      "value": 7,
+      "label": "😀"
+    },
+    {
+      "id": 9,
+      "value": 8,
+      "label": "😁"
+    },
+    {
+      "id": 10,
+      "value": 9,
+      "label": "🤠"
+    }
+  ]
+}

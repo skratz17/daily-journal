@@ -1,17 +1,20 @@
 import { getTodayDateString } from '../utilities/dateFormatting.js';
-import { getMoodEmoji, getDefaultMoodValue, getEmojisCount } from '../utilities/moodEmojis.js';
+import { getDefaultMood, getMoodsCount } from '../Moods/MoodProvider.js';
 import escapeHTML from '../utilities/escapeHTML.js';
 
-const defaults = {
-  date: getTodayDateString(),
-  concept: '',
-  mood: getDefaultMoodValue(),
-  entry: ''
-};
-
 export const JournalEntryFormHTML = (journalEntry) => {
+  const defaults = {
+    date: getTodayDateString(),
+    concept: '',
+    mood: getDefaultMood(),
+    entry: ''
+  };
+
   const initialValuesObject = journalEntry || defaults;
   const { date, concept, mood, entry, id } = initialValuesObject;
+
+  const moodEmoji = mood.label;
+  const moodValue = mood.value;
 
   return `
     <form id="entry-form${id ? `--${id}` : ''}" class="entry-form">
@@ -29,10 +32,10 @@ export const JournalEntryFormHTML = (journalEntry) => {
         </fieldset>
         <fieldset class="form-group">
           <label for="mood" class="entry-form__label entry-form__mood-label">Mood</label>
-          <ul class="entry-form__errors entry-form__mood-errors"></ul>
-          <input type="range" class="entry-form__mood" id="mood${id ? `--${id}` : ''}" name="mood" value="${escapeHTML(mood)}" min="0" max="${getEmojisCount() - 1}" step="1">
+          <ul class="entry-form__errors entry-form__moodId-errors"></ul>
+          <input type="range" class="entry-form__mood" id="mood${id ? `--${id}` : ''}" name="mood" value="${escapeHTML(moodValue)}" min="0" max="${getMoodsCount() - 1}" step="1">
         </fieldset>
-        <div id="entry-form__mood-emoji${id ? `--${id}` : ''}" class="entry-form__mood-emoji">${getMoodEmoji(mood)}</div>
+        <div id="entry-form__mood-emoji${id ? `--${id}` : ''}" class="entry-form__mood-emoji">${moodEmoji}</div>
       </div>
       <fieldset class="form-group">
         <label for="entry" class="entry-form__label entry-form__entry-label">Journal Entry</label>

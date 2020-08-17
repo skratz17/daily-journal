@@ -1,12 +1,11 @@
 import escape from '../utilities/escapeHTML.js';
-import { getMoodEmoji } from '../utilities/moodEmojis.js';
 
 const eventHub = document.querySelector('.container');
 
 export const JournalEntry = journalEntry => {
   const { id, date, concept, entry, mood } = journalEntry;
 
-  const moodEmoji = getMoodEmoji(mood);
+  const moodEmoji = mood.label;
 
   return `
     <article id="entry--${escape(id)}" class="journal-entry">
