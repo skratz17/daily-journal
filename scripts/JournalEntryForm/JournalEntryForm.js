@@ -23,23 +23,13 @@ export const JournalEntryForm = () => {
 };
 
 /**
- * Get the selector to use for using document.querySelector to obtain a reference to the <form> DOM node that is being interacted with.
- * @param {String} id The id number of the entry that this form is editing, if applicable.
- */
-const getFormSelector = id => {
-  let formSelector = '#entry-form';
-  if(id) formSelector += `--${id}`;
-  return formSelector;
-};
-
-/**
  * Factory function to create a journalEntry object from the current data in the form.
- * @param {String} id The id number of the entry that this form is editing, if applicable.
+ * @param {HTMLElement} formElement The form element whose inputs' values should be used to construct the journal entry object
  */
-const createJournalEntryObjectFromFormData = (id) => {
+const createJournalEntryObjectFromFormData = (formElement) => {
   const journalEntry = {};
 
-  const { elements } = document.querySelector(getFormSelector(id));
+  const { elements } = formElement;
   for(const element of elements) {
     if(element.nodeName.toLowerCase() !== 'button' && element.nodeName.toLowerCase() !== 'fieldset') {
       journalEntry[element.name] = element.value;
@@ -54,34 +44,34 @@ const createJournalEntryObjectFromFormData = (id) => {
 
 /**
  * Clear out all error messages from the DOM
- * @param {String} id The id number of the entry that this form is editing, if applicable.
+ * @param {HTMLElement} formElement The form element to clear error messages on
  */
-const clearErrorMessages = id => {
+const clearErrorMessages = formElement => {
   document
-    .querySelectorAll(`${getFormSelector(id)} .entry-form__errors`)
+    .querySelectorAll(`#${formElement.getAttribute('id')} .entry-form__errors`)
     .forEach(errorMessageNode => errorMessageNode.innerHTML = '');
 };
 
 /**
  * Render validation errors to the DOM.
  * @param {Array} errors Array of error objects from the Validator.
- * @param {String} id The id number of the entry that this form is editing, if applicable.
+ * @param {HTMLElement} formElement The form element to render errors for
  */
-const renderErrors = (errors, id) => {
-  clearErrorMessages(id);
+const renderErrors = (errors, formElement) => {
+  clearErrorMessages(formElement);
 
   errors.forEach(error => {
-    const errorMessageNode = document.querySelector(`${getFormSelector(id)} .entry-form__${error.propertyName}-errors`);
+    const errorMessageNode = document.querySelector(`#${formElement.getAttribute('id')} .entry-form__${error.propertyName}-errors`);
     errorMessageNode.innerHTML += JournalEntryFormError(error.errorMessage);
   });
 };
 
 /**
  * Set the disabled attribute for each input in the form to true.
- * @param {String} id The id number of the entry that this form is editing, if applicable.
+ * @param {HTMLElement} formElement The form element to disable inputs on
  */
-const disableForm = id => {
-  for(const element of document.querySelector(getFormSelector(id)).elements) {
+const disableForm = formElement => {
+  for(const element of formElement.elements) {
     element.disabled = true;
   }
 };
@@ -107,14 +97,15 @@ eventHub.addEventListener('submit', event => {
 
   if(nodeId === 'entry-form') {
     event.preventDefault();
+    const formElement = event.target;
 
-    const journalEntry = createJournalEntryObjectFromFormData(entryId);
+    const journalEntry = createJournalEntryObjectFromFormData(formElement);
 
     const errors = validator.validate(journalEntry);
-    renderErrors(errors, entryId);
+    renderErrors(errors, formElement);
 
     if(errors.length === 0) {
-      disableForm(entryId);
+      disableForm(formElement);
 
       if(entryId) {
         updateJournalEntry(journalEntry);
