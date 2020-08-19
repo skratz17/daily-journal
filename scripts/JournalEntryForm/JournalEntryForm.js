@@ -6,7 +6,6 @@ import { JournalEntryFormHTML } from './JournalEntryFormHTML.js';
 import { JournalEntryFormError } from './JournalEntryFormError.js';
 import { useMoodByValue, getMoods } from '../Moods/MoodProvider.js';
 import { validator } from './JournalEntryFormValidator.js';
-import { getConcepts, getOrCreateConcepts } from '../Concepts/ConceptProvider.js';
 import { saveJournalEntry, updateJournalEntry } from '../JournalEntry/JournalDataProvider.js';
 
 const eventHub = document.querySelector('.container');
@@ -16,7 +15,6 @@ const eventHub = document.querySelector('.container');
  */
 export const JournalEntryForm = () => {
   getMoods()
-    .then(getConcepts)
     .then(() => {
       document
         .querySelector('.entry-form-container')
