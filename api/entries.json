@@ -1,24 +1,5 @@
 {
-  "entries": [
-    {
-      "id": 1,
-      "date": "2020-08-19",
-      "moodId": 3,
-      "entry": "asdfasdfasdf"
-    },
-    {
-      "id": 2,
-      "date": "2020-08-19",
-      "moodId": 5,
-      "entry": "asdfasdff"
-    },
-    {
-      "id": 3,
-      "date": "2020-08-19",
-      "moodId": 10,
-      "entry": "asdfasdfadf"
-    }
-  ],
+  "entries": [],
   "moods": [
     {
       "id": 1,
@@ -95,43 +76,23 @@
     {
       "name": "test",
       "id": 6
-    }
-  ],
-  "entryConcepts": [
-    {
-      "entryId": 1,
-      "conceptId": 1,
-      "id": 1
     },
     {
-      "entryId": 1,
-      "conceptId": 2,
-      "id": 2
-    },
-    {
-      "entryId": 1,
-      "conceptId": 4,
-      "id": 4
-    },
-    {
-      "entryId": 1,
-      "conceptId": 5,
-      "id": 5
-    },
-    {
-      "entryId": 2,
-      "conceptId": 6,
-      "id": 6
-    },
-    {
-      "entryId": 3,
-      "conceptId": 1,
+      "name": "and another test",
       "id": 7
     },
     {
-      "entryId": 3,
-      "conceptId": 3,
+      "name": "apis",
       "id": 8
+    },
+    {
+      "name": "javasript",
+      "id": 9
+    },
+    {
+      "name": "javascript",
+      "id": 10
     }
-  ]
+  ],
+  "entryConcepts": []
 }

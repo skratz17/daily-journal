@@ -73,3 +73,11 @@ const deleteUnusedEntryConcepts = (entry, concepts) => {
 
   return Promise.all(unusedEntryConcepts.map(entryConcept => deleteEntryConcept(entryConcept.id)));
 }
+
+export const deleteEntryConceptsForEntry = id => {
+  const entryConceptsToDelete = entryConcepts.filter(entryConcept => entryConcept.entryId === id);
+
+  return Promise.all(entryConceptsToDelete.map(entryConcept => deleteEntryConcept(entryConcept.id)))
+    .then(getEntryConcepts)
+    .then(broadcastEntryConceptsStateChanged);
+}
