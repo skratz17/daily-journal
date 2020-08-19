@@ -1,3 +1,5 @@
+import { getOrCreateConcepts } from './ConceptProvider.js';
+
 let entryConcepts = [];
 
 const saveEntryConcept = (entry, concept) => {
@@ -16,5 +18,6 @@ const saveEntryConcept = (entry, concept) => {
 }
 
 export const saveEntryConcepts = (entry, concepts) => {
-  return Promise.all(concepts.map(concept => saveEntryConcept(entry, concept)));
+  return getOrCreateConcepts(concepts)
+    .then(conceptObjects => Promise.all(conceptObjects.map(concept => saveEntryConcept(entry, concept))))
 }

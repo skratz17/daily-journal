@@ -115,16 +115,11 @@ eventHub.addEventListener('submit', event => {
     if(errors.length === 0) {
       disableForm(formElement);
 
-      getOrCreateConcepts(journalEntry.concepts)
-        .then(concepts => {
-          saveJournalEntry(journalEntry, concepts);
-        });
-
       if(entryId) {
         // updateJournalEntry(journalEntry);
       }
       else {
-        // saveJournalEntry(journalEntry);
+        saveJournalEntry(journalEntry);
       }
     }
   }

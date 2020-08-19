@@ -42,7 +42,7 @@ export const useJournalEntriesReverseChronological = () => {
   return JSON.parse(JSON.stringify(sortedReverseChronological));
 };
 
-export const saveJournalEntry = (entry, concepts) => {
+export const saveJournalEntry = entry => {
   fetch('http://localhost:8088/entries', {
     method: 'POST',
     headers: {
@@ -51,7 +51,7 @@ export const saveJournalEntry = (entry, concepts) => {
     body: JSON.stringify(createSaveableJournalEntryObject(entry))
   })
     .then(res => res.json())
-    .then(entryData => saveEntryConcepts(entryData, concepts))
+    .then(entryData => saveEntryConcepts(entryData, entry.concepts))
     .then(getJournalEntries)
     .then(broadcastJournalEntriesStateChanged);
 };
