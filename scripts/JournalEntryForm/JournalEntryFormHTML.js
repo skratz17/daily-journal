@@ -26,12 +26,13 @@ const getFormInputDomIds = id => {
 export const JournalEntryFormHTML = (journalEntry) => {
   const defaultFormValues = {
     date: getTodayDateString(),
-    concepts: '',
+    concepts: [],
     mood: getDefaultMood(),
     entry: ''
   };
 
   const { date, concepts, mood, entry, id } = journalEntry || defaultFormValues;
+  const conceptsString = concepts.map(concept => concept.name).join(', ');
   const domIds = getFormInputDomIds(id);
 
   const moodEmoji = mood.label;
@@ -49,7 +50,7 @@ export const JournalEntryFormHTML = (journalEntry) => {
         <fieldset class="form-group">
           <label for="${domIds.concepts}" class="entry-form__label entry-form__concepts-label">Concepts</label>
           <ul class="entry-form__errors entry-form__concepts-errors"></ul>
-          <input type="text" class="entry-form__concepts" id="${domIds.concepts}" name="concepts" value="${escapeHTML(concepts)}">
+          <input type="text" class="entry-form__concepts" id="${domIds.concepts}" name="concepts" value="${escapeHTML(conceptsString)}">
         </fieldset>
         <fieldset class="form-group">
           <label for="${domIds.mood}" class="entry-form__label entry-form__mood-label">Mood</label>
