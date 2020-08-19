@@ -116,7 +116,7 @@ eventHub.addEventListener('submit', event => {
       disableForm(formElement);
 
       if(entryId) {
-        // updateJournalEntry(journalEntry);
+        updateJournalEntry(journalEntry);
       }
       else {
         saveJournalEntry(journalEntry);

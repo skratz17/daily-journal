@@ -53,6 +53,16 @@ eventHub.addEventListener('journalEntriesStateChanged', () => {
   render();
 });
 
+eventHub.addEventListener('conceptsStateChanged', () => {
+  concepts = useConcepts();
+  render();
+});
+
+eventHub.addEventListener('entryConceptsStateChanged', () => {
+  entryConcepts = useEntryConcepts();
+  render();
+});
+
 eventHub.addEventListener('editEntryButtonClicked', event => {
   const entryId = event.detail.entryId;
 

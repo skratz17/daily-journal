@@ -1,5 +1,12 @@
 let concepts = [];
 
+const eventHub = document.querySelector('.container');
+
+const broadcastConceptsStateChanged = () => {
+  const conceptsStateChanged = new CustomEvent('conceptsStateChanged');
+  eventHub.dispatchEvent(conceptsStateChanged);
+};
+
 export const useConcepts = () => concepts.slice();
 
 export const getConcepts = () => {
@@ -27,5 +34,6 @@ export const getOrCreateConcepts = conceptNames => {
 
   return Promise.all(conceptsToCreate.map(saveConcept))
     .then(getConcepts)
+    .then(broadcastConceptsStateChanged)
     .then(() => concepts.filter(concept => conceptNames.includes(concept.name)));
 };
