@@ -1,3 +1,5 @@
+import { saveEntryConcepts } from '../Concepts/EntryConceptProvider.js';
+
 const JOURNAL_ENTRY_FIELDS = [ 'id', 'date', 'moodId', 'entry' ];
 
 let journal = [];
@@ -7,6 +9,17 @@ const eventHub = document.querySelector('.container');
 const broadcastJournalEntriesStateChanged = () => {
   const journalEntriesStateChanged = new CustomEvent('journalEntriesStateChanged');
   eventHub.dispatchEvent(journalEntriesStateChanged);
+};
+
+/**
+ * Given a journal entry object, return an object containing only the properties and values from the given object that should be saved to the database (defined in JOURNAL_ENTRY_FIELDS)
+ * @param {Object} journalEntry A journal entry object that potentially includes properties not to save to DB.
+ */
+const createSaveableJournalEntryObject = journalEntry => {
+  return JOURNAL_ENTRY_FIELDS.reduce((obj, field) => {
+    if(journalEntry[field]) obj[field] = journalEntry[field];
+    return obj;
+  }, {});
 };
 
 export const getJournalEntries = () => {
@@ -29,14 +42,16 @@ export const useJournalEntriesReverseChronological = () => {
   return JSON.parse(JSON.stringify(sortedReverseChronological));
 };
 
-export const saveJournalEntry = entry => {
+export const saveJournalEntry = (entry, concepts) => {
   fetch('http://localhost:8088/entries', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(entry)
+    body: JSON.stringify(createSaveableJournalEntryObject(entry))
   })
+    .then(res => res.json())
+    .then(entryData => saveEntryConcepts(entryData, concepts))
     .then(getJournalEntries)
     .then(broadcastJournalEntriesStateChanged);
 };

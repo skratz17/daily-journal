@@ -117,7 +117,7 @@ eventHub.addEventListener('submit', event => {
 
       getOrCreateConcepts(journalEntry.concepts)
         .then(concepts => {
-          saveJournalEntry(journalEntry);
+          saveJournalEntry(journalEntry, concepts);
         });
 
       if(entryId) {
