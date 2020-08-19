@@ -17,6 +17,14 @@ const saveEntryConcept = (entry, concept) => {
   });
 }
 
+export const useEntryConcepts = () => entryConcepts.slice();
+
+export const getEntryConcepts = () => {
+  return fetch ('http://localhost:8088/entryConcepts')
+    .then(res => res.json())
+    .then(entryConceptsData => entryConcepts = entryConceptsData);
+};
+
 export const saveEntryConcepts = (entry, concepts) => {
   return getOrCreateConcepts(concepts)
     .then(conceptObjects => Promise.all(conceptObjects.map(concept => saveEntryConcept(entry, concept))))

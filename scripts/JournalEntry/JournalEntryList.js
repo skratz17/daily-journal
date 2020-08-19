@@ -2,13 +2,25 @@ import { getJournalEntries, useJournalEntriesReverseChronological } from './Jour
 import { JournalEntry } from './JournalEntry.js';
 import { JournalEntryFormHTML } from '../JournalEntryForm/JournalEntryFormHTML.js';
 import { getMoods } from '../Moods/MoodProvider.js';
+import { getConcepts, useConcepts } from '../Concepts/ConceptProvider.js';
+import { getEntryConcepts, useEntryConcepts } from '../Concepts/EntryConceptProvider.js';
 
 const contentTarget = document.querySelector('.entries');
 const eventHub = document.querySelector('.container');
 
 let editingJournalEntryId;
 
-const render = entries => {
+let entries = [];
+let concepts = [];
+let entryConcepts = [];
+
+const render = () => {
+  entries.forEach(entry => {
+    entry.concepts = entryConcepts
+      .filter(entryConcept => entryConcept.entryId === entry.id)
+      .map(entryConcept => concepts.find(concept => entryConcept.conceptId === concept.id))
+  });
+
   const entriesHTML = entries.map(entry => 
     entry.id === editingJournalEntryId ? JournalEntryFormHTML(entry) : JournalEntry(entry)
   ).join('');
@@ -22,9 +34,13 @@ const render = entries => {
 export const JournalEntryList = () => {
   getJournalEntries()
     .then(getMoods)
+    .then(getConcepts)
+    .then(getEntryConcepts)
     .then(() => {
-      const entries = useJournalEntriesReverseChronological();
-      render(entries);
+      entries = useJournalEntriesReverseChronological();
+      concepts = useConcepts();
+      entryConcepts = useEntryConcepts();
+      render();
     });
 };
 
@@ -33,12 +49,13 @@ export const JournalEntryList = () => {
  */
 eventHub.addEventListener('journalEntriesStateChanged', () => {
   editingJournalEntryId = 0;
-  render(useJournalEntriesReverseChronological());
+  entries = useJournalEntriesReverseChronological();
+  render();
 });
 
 eventHub.addEventListener('editEntryButtonClicked', event => {
   const entryId = event.detail.entryId;
 
   editingJournalEntryId = entryId;
-  render(useJournalEntriesReverseChronological());
+  render();
 });
