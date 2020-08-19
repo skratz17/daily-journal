@@ -37,7 +37,7 @@ const createJournalEntryObjectFromFormData = (formElement) => {
           journalEntry.moodId = useMoodByValue(element.value).id;
           break;
         case 'concepts':
-          journalEntry.concepts = element.value.split(',').map(concept => concept.trim());
+          journalEntry.concepts = element.value.split(',').map(concept => concept.toLowerCase().trim());
           break;
         default:
           journalEntry[element.name] = element.value;
