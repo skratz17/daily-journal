@@ -32,12 +32,18 @@ const createJournalEntryObjectFromFormData = (formElement) => {
   const { elements } = formElement;
   for(const element of elements) {
     if(element.nodeName.toLowerCase() !== 'button' && element.nodeName.toLowerCase() !== 'fieldset') {
-      journalEntry[element.name] = element.value;
+      switch(element.name) {
+        case 'mood':
+          journalEntry.moodId = useMoodByValue(element.value).id;
+          break;
+        case 'concepts':
+          journalEntry.concepts = element.value.split(',').map(concept => concept.trim());
+          break;
+        default:
+          journalEntry[element.name] = element.value;
+      }
     }
   }
-
-  journalEntry.moodId = useMoodByValue(journalEntry.mood).id;
-  delete journalEntry.mood;
 
   return journalEntry;
 };

@@ -12,7 +12,7 @@ const getFormInputDomIds = id => {
   return {
     form: getFormSpecificId('entry-form'),
     date: getFormSpecificId('date'),
-    concept: getFormSpecificId('concept'),
+    concepts: getFormSpecificId('concepts'),
     mood: getFormSpecificId('mood'),
     moodEmoji: getFormSpecificId('entry-form__mood-emoji'),
     entry: getFormSpecificId('entry')
@@ -26,12 +26,13 @@ const getFormInputDomIds = id => {
 export const JournalEntryFormHTML = (journalEntry) => {
   const defaultFormValues = {
     date: getTodayDateString(),
-    concept: '',
+    concepts: [],
     mood: getDefaultMood(),
     entry: ''
   };
 
-  const { date, concept, mood, entry, id } = journalEntry || defaultFormValues;
+  const { date, concepts, mood, entry, id } = journalEntry || defaultFormValues;
+  const conceptsString = concepts.map(concept => concept.name).join(', ');
   const domIds = getFormInputDomIds(id);
 
   const moodEmoji = mood.label;
@@ -45,11 +46,11 @@ export const JournalEntryFormHTML = (journalEntry) => {
         <ul class="entry-form__errors entry-form__date-errors"></ul>
         <input required type="date" class="entry-form__date" id="${domIds.date}" name="date" value="${escapeHTML(date)}">
       </fieldset>
-      <div class="entry-form__concept-and-mood-wrapper">
+      <div class="entry-form__concepts-and-mood-wrapper">
         <fieldset class="form-group">
-          <label for="${domIds.concept}" class="entry-form__label entry-form__concept-label">Concepts</label>
-          <ul class="entry-form__errors entry-form__concept-errors"></ul>
-          <input type="text" class="entry-form__concept" id="${domIds.concept}" name="concept" value="${escapeHTML(concept)}">
+          <label for="${domIds.concepts}" class="entry-form__label entry-form__concepts-label">Concepts</label>
+          <ul class="entry-form__errors entry-form__concepts-errors"></ul>
+          <input type="text" class="entry-form__concepts" id="${domIds.concepts}" name="concepts" value="${escapeHTML(conceptsString)}">
         </fieldset>
         <fieldset class="form-group">
           <label for="${domIds.mood}" class="entry-form__label entry-form__mood-label">Mood</label>

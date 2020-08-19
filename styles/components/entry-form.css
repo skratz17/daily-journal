@@ -12,7 +12,7 @@
   width: 100%;
 }
 
-.entry-form__concept-and-mood-wrapper {
+.entry-form__concepts-and-mood-wrapper {
   display: flex;
   align-items: center;
 }
@@ -29,7 +29,7 @@
 }
 
 .entry-form__date,
-.entry-form__concept,
+.entry-form__concepts,
 .entry-form__mood,
 .entry-form__entry {
   background: var(--light-color);
@@ -40,8 +40,8 @@
   width: 25%
 }
 
-.entry-form__concept,
-.entry-form__concept-errors,
+.entry-form__concepts,
+.entry-form__concepts-errors,
 .entry-form__mood,
 .entry-form__mood-errors {
   width: 75%;
@@ -89,7 +89,7 @@
 }
 
 .entries .entry-form__date,
-.entries .entry-form__concept,
+.entries .entry-form__concepts,
 .entries .entry-form__mood,
 .entries .entry-form__entry {
   background-color: #fff;
@@ -105,7 +105,7 @@
     width: 50%;
   }
 
-  .entry-form__concept-and-mood-wrapper {
+  .entry-form__concepts-and-mood-wrapper {
     flex-direction: column;
   }
 
