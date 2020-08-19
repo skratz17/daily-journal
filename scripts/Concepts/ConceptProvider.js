@@ -29,7 +29,7 @@ const saveConcept = conceptName => {
 
 export const getOrCreateConcepts = conceptNames => {
   const conceptsToCreate = conceptNames.filter(conceptString => 
-    !(concepts.some(concept => concept.name.toLowerCase() === conceptString.toLowerCase()))
+    !(concepts.some(concept => concept.name === conceptString))
   );
 
   return Promise.all(conceptsToCreate.map(saveConcept))
