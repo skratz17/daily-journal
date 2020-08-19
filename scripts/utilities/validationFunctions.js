@@ -10,4 +10,6 @@ export const validateIsNotAboutBruceWillis = value => !(value.toLowerCase().incl
 
 export const validateIsNotEmpty = value => value.toString().trim().length > 0;
 
+export const validateIsNotEmptyArray = value => value.filter(value => value).length > 0;
+
 export const validateMoodIsNotWorstPossible = id => useMoodById(id).value > 0;

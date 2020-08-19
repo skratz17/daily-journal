@@ -6,6 +6,7 @@ import { JournalEntryFormHTML } from './JournalEntryFormHTML.js';
 import { JournalEntryFormError } from './JournalEntryFormError.js';
 import { useMoodByValue, getMoods } from '../Moods/MoodProvider.js';
 import { validator } from './JournalEntryFormValidator.js';
+import { getConcepts, getOrCreateConcepts } from '../Concepts/ConceptProvider.js';
 import { saveJournalEntry, updateJournalEntry } from '../JournalEntry/JournalDataProvider.js';
 
 const eventHub = document.querySelector('.container');
@@ -15,6 +16,7 @@ const eventHub = document.querySelector('.container');
  */
 export const JournalEntryForm = () => {
   getMoods()
+    .then(getConcepts)
     .then(() => {
       document
         .querySelector('.entry-form-container')
@@ -32,12 +34,18 @@ const createJournalEntryObjectFromFormData = (formElement) => {
   const { elements } = formElement;
   for(const element of elements) {
     if(element.nodeName.toLowerCase() !== 'button' && element.nodeName.toLowerCase() !== 'fieldset') {
-      journalEntry[element.name] = element.value;
+      switch(element.name) {
+        case 'mood':
+          journalEntry.moodId = useMoodByValue(element.value).id;
+          break;
+        case 'concepts':
+          journalEntry.concepts = element.value.split(',').map(concept => concept.trim());
+          break;
+        default:
+          journalEntry[element.name] = element.value;
+      }
     }
   }
-
-  journalEntry.moodId = useMoodByValue(journalEntry.mood).id;
-  delete journalEntry.mood;
 
   return journalEntry;
 };
@@ -107,11 +115,16 @@ eventHub.addEventListener('submit', event => {
     if(errors.length === 0) {
       disableForm(formElement);
 
+      getOrCreateConcepts(journalEntry.concepts)
+        .then(concepts => {
+          saveJournalEntry(journalEntry);
+        });
+
       if(entryId) {
-        updateJournalEntry(journalEntry);
+        // updateJournalEntry(journalEntry);
       }
       else {
-        saveJournalEntry(journalEntry);
+        // saveJournalEntry(journalEntry);
       }
     }
   }

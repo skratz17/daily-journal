@@ -1,3 +1,5 @@
+const JOURNAL_ENTRY_FIELDS = [ 'id', 'date', 'moodId', 'entry' ];
+
 let journal = [];
 
 const eventHub = document.querySelector('.container');
