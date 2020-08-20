@@ -4,7 +4,9 @@ import { JournalEntryNavLink } from './JournalEntryNavLink.js';
 const contentTarget = document.querySelector('.entries-nav');
 const eventHub = document.querySelector('.container');
 
-const render = entries => {
+let entries = [];
+
+const render = () => {
   const navLinksHTML = entries.map(JournalEntryNavLink).join('');
 
   contentTarget.innerHTML = `
@@ -18,9 +20,12 @@ const render = entries => {
 export const JournalEntryNav = () => {
   getJournalEntries()
     .then(() => {
-      const entries = useJournalEntries();
-      render(entries);
+      entries = useJournalEntries();
+      render();
     });
 };
 
-eventHub.addEventListener('journalEntriesStateChanged', () => render(useJournalEntries()));
+eventHub.addEventListener('journalEntriesStateChanged', () => {
+  entries = useJournalEntries();
+  render();
+});
