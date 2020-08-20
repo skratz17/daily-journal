@@ -1,0 +1,10 @@
+.concept-button {
+  background: var(--light-color);
+  border: 1px solid var(--dark-blue);
+  margin: 0 0.25rem;
+}
+
+.concept-button--featured {
+  background-color: var(--dark-blue);
+  color: var(--light-color);
+}

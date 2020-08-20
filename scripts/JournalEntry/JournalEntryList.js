@@ -9,6 +9,7 @@ const contentTarget = document.querySelector('.entries');
 const eventHub = document.querySelector('.container');
 
 let editingJournalEntryId;
+let featuredConcept = null;
 
 let entries = [];
 let concepts = [];
@@ -19,16 +20,18 @@ const render = () => {
   entries.forEach(entry => {
     entry.concepts = entryConcepts
       .filter(entryConcept => entryConcept.entryId === entry.id)
-      .map(entryConcept => concepts.find(concept => entryConcept.conceptId === concept.id))
+      .map(entryConcept => concepts.find(concept => entryConcept.conceptId === concept.id));
   });
 
   const entriesHTML = entries.map(entry => 
-    entry.id === editingJournalEntryId ? JournalEntryFormHTML(entry) : JournalEntry(entry)
+    entry.id === editingJournalEntryId ? JournalEntryFormHTML(entry) : JournalEntry(entry, featuredConcept)
   ).join('');
 
   contentTarget.innerHTML = `
     <h2 class="entries__header">My Journal</h2>
-    ${entriesHTML}
+    <div class="${featuredConcept ? 'has-featured' : ''}">
+      ${entriesHTML}
+    </div>
   `;
 };
 
@@ -68,5 +71,13 @@ eventHub.addEventListener('editEntryButtonClicked', event => {
   const entryId = event.detail.entryId;
 
   editingJournalEntryId = entryId;
+  featuredConcept = null;
+  render();
+});
+
+eventHub.addEventListener('conceptButtonClicked', event => {
+  const conceptId = event.detail.conceptId;
+
+  featuredConcept = (featuredConcept === conceptId) ? null : conceptId;
   render();
 });
