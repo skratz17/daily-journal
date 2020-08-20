@@ -1,4 +1,4 @@
-import { saveEntryConcepts, updateEntryConcepts, deleteEntryConceptsForEntry } from '../Concepts/EntryConceptProvider.js';
+import { updateEntryConcepts, deleteEntryConceptsForEntry } from '../Concepts/EntryConceptProvider.js';
 
 const JOURNAL_ENTRY_FIELDS = [ 'id', 'date', 'moodId', 'entry' ];
 
@@ -51,7 +51,7 @@ export const saveJournalEntry = entry => {
     body: JSON.stringify(createSaveableJournalEntryObject(entry))
   })
     .then(res => res.json())
-    .then(entryData => saveEntryConcepts(entryData, entry.concepts))
+    .then(entryData => updateEntryConcepts(entryData, entry.concepts))
     .then(getJournalEntries)
     .then(broadcastJournalEntriesStateChanged);
 };
