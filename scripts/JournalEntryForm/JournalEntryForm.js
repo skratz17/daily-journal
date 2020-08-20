@@ -11,15 +11,20 @@ import { saveJournalEntry, updateJournalEntry } from '../JournalEntry/JournalDat
 const eventHub = document.querySelector('.container');
 
 /**
- * Render a Journal Entry Form directly to the DOM node with class .entry-form-container
+ * JournalEntryForm component to render directly to the DOM
  */
 export const JournalEntryForm = () => {
   getMoods()
-    .then(() => {
-      document
-        .querySelector('.entry-form-container')
-        .innerHTML = JournalEntryFormHTML();
-    })
+    .then(render);
+};
+
+/**
+ * Render directly to the DOM node with class .entry-form-container
+ */
+export const render = () => {
+  document
+    .querySelector('.entry-form-container')
+    .innerHTML = JournalEntryFormHTML();
 };
 
 /**
@@ -126,4 +131,4 @@ eventHub.addEventListener('submit', event => {
 /**
  * Event listener to re-render empty and enabled form after successful entry save.
  */
-eventHub.addEventListener('journalEntriesStateChanged', JournalEntryForm);
+eventHub.addEventListener('journalEntriesStateChanged', render);
