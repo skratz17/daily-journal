@@ -10,9 +10,11 @@ export const validateIsNotAboutBruceWillis = value => !(value.toLowerCase().incl
 
 export const validateIsNotEmpty = value => value.toString().trim().length > 0;
 
-export const validateIsNotEmptyArray = value => value.filter(value => value.trim()).length > 0;
+export const validateIsNotEmptyArray = array => array.length > 0;
 
 export const validateArrayLengthIsNotGreaterThanThree = array => array.length <= 3;
+
+export const validateArrayContainsNoEmptyValues = array => array.every(el => el.trim());
 
 export const validateArrayDoesNotContainDuplicates = array => {
   const set = new Set(array);
