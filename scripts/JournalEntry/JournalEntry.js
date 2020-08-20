@@ -1,19 +1,20 @@
 import escape from '../utilities/escapeHTML.js';
 import { deleteJournalEntry } from './JournalDataProvider.js';
-import escapeHTML from '../utilities/escapeHTML.js';
+import { ConceptTag } from '../Concepts/ConceptTag.js';
 
 const eventHub = document.querySelector('.container');
 
-export const JournalEntry = journalEntry => {
+export const JournalEntry = (journalEntry, featuredConcept) => {
   const { id, date, concepts, entry, mood } = journalEntry;
 
   const moodEmoji = mood.label;
+  const isFeatured = concepts.some(concept => concept.id === featuredConcept);
 
   return `
-    <article id="entry--${escape(id)}" class="journal-entry">
+    <article id="entry--${escape(id)}" class="journal-entry ${isFeatured ? 'journal-entry--featured' : ''}">
       <p class="journal-entry__date">${escape(date)}</p>
       <div class="journal-entry__concept-mood-wrapper">
-        <p class="journal-entry__concept">Concepts: ${concepts.map(concept => escapeHTML(concept.name)).join(', ')}</p>
+        <p class="journal-entry__concept">Concepts: ${concepts.map(concept => ConceptTag(concept, featuredConcept)).join('')}</p>
         <p class="journal-entry__mood">Mood: ${moodEmoji}</p>
       </div>
       <p class="journal-entry__entry">${escape(entry)}</p>

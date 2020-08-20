@@ -8,6 +8,14 @@
   text-align: center;
 }
 
+.has-featured .journal-entry {
+  opacity: 0.5;
+}
+
+.has-featured .journal-entry--featured {
+  opacity: 1;
+}
+
 .journal-entry {
   background-color: var(--light-color);
   color: #000;
