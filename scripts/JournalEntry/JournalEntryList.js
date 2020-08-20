@@ -15,6 +15,7 @@ let concepts = [];
 let entryConcepts = [];
 
 const render = () => {
+  // attach array of entryConcepts for each entry to entry.concepts
   entries.forEach(entry => {
     entry.concepts = entryConcepts
       .filter(entryConcept => entryConcept.entryId === entry.id)
