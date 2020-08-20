@@ -12,6 +12,8 @@ export const validateIsNotEmpty = value => value.toString().trim().length > 0;
 
 export const validateIsNotEmptyArray = value => value.filter(value => value.trim()).length > 0;
 
+export const validateArrayLengthIsNotGreaterThanThree = array => array.length <= 3;
+
 export const validateArrayDoesNotContainDuplicates = array => {
   const set = new Set(array);
   return set.size === array.length;
