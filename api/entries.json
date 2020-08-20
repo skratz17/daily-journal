@@ -52,47 +52,6 @@
       "label": "🤠"
     }
   ],
-  "concepts": [
-    {
-      "name": "a",
-      "id": 1
-    },
-    {
-      "name": "b",
-      "id": 2
-    },
-    {
-      "name": "c",
-      "id": 3
-    },
-    {
-      "name": "d",
-      "id": 4
-    },
-    {
-      "name": "e",
-      "id": 5
-    },
-    {
-      "name": "test",
-      "id": 6
-    },
-    {
-      "name": "and another test",
-      "id": 7
-    },
-    {
-      "name": "apis",
-      "id": 8
-    },
-    {
-      "name": "javasript",
-      "id": 9
-    },
-    {
-      "name": "javascript",
-      "id": 10
-    }
-  ],
+  "concepts": [],
   "entryConcepts": []
 }
