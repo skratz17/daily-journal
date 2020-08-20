@@ -10,12 +10,12 @@ const getFormInputDomIds = id => {
   const getFormSpecificId = prompt => id ? `${prompt}--${id}` : prompt;
 
   return {
-    form: getFormSpecificId('entry-form'),
-    date: getFormSpecificId('date'),
-    concepts: getFormSpecificId('concepts'),
-    mood: getFormSpecificId('mood'),
-    moodEmoji: getFormSpecificId('entry-form__mood-emoji'),
-    entry: getFormSpecificId('entry')
+    form: escapeHTML(getFormSpecificId('entry-form')),
+    date: escapeHTML(getFormSpecificId('date')),
+    concepts: escapeHTML(getFormSpecificId('concepts')),
+    mood: escapeHTML(getFormSpecificId('mood')),
+    moodEmoji: escapeHTML(getFormSpecificId('entry-form__mood-emoji')),
+    entry: escapeHTML(getFormSpecificId('entry'))
   };
 }
 
@@ -64,7 +64,7 @@ export const JournalEntryFormHTML = (journalEntry) => {
         <ul class="entry-form__errors entry-form__entry-errors"></ul>
         <textarea class="entry-form__entry" name="entry" id="${domIds.entry}" cols="30" rows="10">${escapeHTML(entry)}</textarea>
       </fieldset>
-      <input type="hidden" name="id" id="entryId" value="${id || ''}">
+      <input type="hidden" name="id" id="entryId" value="${id ? escapeHTML(id) : ''}">
       <button type="submit" class="entry-form__submit btn btn-green">Record Journal Entry</button>
     </form>
   `;
