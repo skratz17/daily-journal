@@ -8,7 +8,7 @@ import { getEntryConcepts, useEntryConcepts } from '../Concepts/EntryConceptProv
 const contentTarget = document.querySelector('.entries');
 const eventHub = document.querySelector('.container');
 
-let editingJournalEntryId;
+let editingJournalEntryId = null;
 let featuredConcept = null;
 
 let entries = [];
@@ -48,21 +48,10 @@ export const JournalEntryList = () => {
     });
 };
 
-/**
- * Event listener to update journal entry list on state changed.
- */
 eventHub.addEventListener('journalEntriesStateChanged', () => {
-  editingJournalEntryId = 0;
+  editingJournalEntryId = null;
   entries = useJournalEntriesReverseChronological();
-  render();
-});
-
-eventHub.addEventListener('conceptsStateChanged', () => {
   concepts = useConcepts();
-  render();
-});
-
-eventHub.addEventListener('entryConceptsStateChanged', () => {
   entryConcepts = useEntryConcepts();
   render();
 });
