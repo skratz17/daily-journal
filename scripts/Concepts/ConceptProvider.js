@@ -38,7 +38,7 @@ const saveConcept = conceptName => {
     },
     body: JSON.stringify(conceptObj)
   });
-}
+};
 
 /**
  * Given an array of concept name strings, determine which concept names are not already reflected by concept objects in the database, create new concept objects in the database for each of those names, and then return array of concept objects for each concept name string in the array passed in as argument.
