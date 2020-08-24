@@ -34,9 +34,10 @@ export const render = () => {
 const createJournalEntryObjectFromFormData = (formElement) => {
   const journalEntry = {};
 
-  const { elements } = formElement;
-  for(const element of elements) {
+  for(const element of formElement.elements) {
     if(element.nodeName.toLowerCase() !== 'button' && element.nodeName.toLowerCase() !== 'fieldset') {
+
+      // perform some type of data transformation if necessary on the form value before setting value in object
       switch(element.name) {
         case 'mood':
           journalEntry.moodId = useMoodByValue(element.value).id;
@@ -104,11 +105,11 @@ eventHub.addEventListener('input', event => {
  * Only saves if the journalEntry object passes all validation tests, renders errors to DOM if errors detected in object.
  */
 eventHub.addEventListener('submit', event => {
-  const [ nodeId, entryId ] = event.target.getAttribute('id').split('--');
+  const formElement = event.target;
+  const [ nodeId, entryId ] = formElement.getAttribute('id').split('--');
 
   if(nodeId === 'entry-form') {
     event.preventDefault();
-    const formElement = event.target;
 
     const journalEntry = createJournalEntryObjectFromFormData(formElement);
 

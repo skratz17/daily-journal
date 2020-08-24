@@ -30,7 +30,7 @@ const saveEntryConcept = (entry, concept) => {
     },
     body: JSON.stringify(entryConcept)
   });
-}
+};
 
 /**
  * GET entryConcepts from API
@@ -66,7 +66,7 @@ export const deleteEntryConceptsForEntry = id => {
   return Promise.all(entryConceptsToDelete.map(entryConcept => deleteEntryConcept(entryConcept.id)))
     .then(getEntryConcepts)
     .then(broadcastEntryConceptsStateChanged);
-}
+};
 
 /**
  * Given a journal entry object and an array of conceptName strings representing all concepts that should be associated with this journal entry:
@@ -85,7 +85,7 @@ export const updateEntryConcepts = (entry, concepts) => {
     .then(() => deleteUnusedEntryConcepts(entry, conceptObjects))
     .then(getEntryConcepts)
     .then(broadcastEntryConceptsStateChanged);
-}
+};
 
 /**
  * Given a journal entry object and an array of concept objects representing all concepts associated with this journal entry, create and save new entryConcept objects in the database for each concept in the concepts array that is not already associated with this journal entry in an entryConcept object.
@@ -101,7 +101,7 @@ const saveNewEntryConceptsForEntry = (entry, concepts) => {
   );
 
   return Promise.all(newConcepts.map(concept => saveEntryConcept(entry, concept)));
-}
+};
 
 /**
  * Given a journal entry object and an array of concept objects representing all concepts associated with this journal entry, delete all entryConcept objects currently saved in the database that refer to this entryId but refer to conceptIds that are not present in the supplied concepts array.
@@ -114,5 +114,4 @@ const deleteUnusedEntryConcepts = (entry, concepts) => {
     .filter(entryConcept => !(concepts.some(concept => concept.id === entryConcept.conceptId)));
 
   return Promise.all(unusedEntryConcepts.map(entryConcept => deleteEntryConcept(entryConcept.id)));
-}
-
+};
