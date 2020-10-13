@@ -29,7 +29,7 @@ const createSaveableJournalEntryObject = journalEntry => {
  * GET journal entries from API.
  */
 export const getJournalEntries = () => {
-  return fetch('http://localhost:8088/entries?_expand=mood')
+  return fetch('http://localhost:8088/entries')
     .then(res => res.json())
     .then(journalData => journal = journalData);
 };
