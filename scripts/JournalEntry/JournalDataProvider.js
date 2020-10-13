@@ -1,4 +1,4 @@
-import { updateEntryConcepts, deleteEntryConceptsForEntry } from '../Concepts/EntryConceptProvider.js';
+import { updateEntryConcepts } from '../Concepts/EntryConceptProvider.js';
 
 const JOURNAL_ENTRY_FIELDS = [ 'id', 'date', 'moodId', 'entry' ];
 
@@ -99,7 +99,6 @@ export const deleteJournalEntry = id => {
   fetch(`http://localhost:8088/entries/${id}`, {
     method: 'DELETE'
   })
-    .then(() => deleteEntryConceptsForEntry(id))
     .then(getJournalEntries)
     .then(broadcastJournalEntriesStateChanged);
 };

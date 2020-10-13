@@ -57,18 +57,6 @@ const deleteEntryConcept = id => {
 };
 
 /**
- * Given a journal entry ID, delete all entryConcept objects in the database referencing that entryId.
- * @param {int} id ID of the journal entry
- */
-export const deleteEntryConceptsForEntry = id => {
-  const entryConceptsToDelete = entryConcepts.filter(entryConcept => entryConcept.entryId === id);
-
-  return Promise.all(entryConceptsToDelete.map(entryConcept => deleteEntryConcept(entryConcept.id)))
-    .then(getEntryConcepts)
-    .then(broadcastEntryConceptsStateChanged);
-};
-
-/**
  * Given a journal entry object and an array of conceptName strings representing all concepts that should be associated with this journal entry:
  *  1) Transform the array of concept name strings into an array of Concept objects, creating new Concept objects in the database where necessary
  *  2) Create and save to database all new entryConcept objects representing new concepts that are to be associated with this journal entry
